@@ -18,6 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
+  // PŁYNNIE SUNĄCY WSKAŹNIK WYBORU JĘZYKA (LANGUAGE GLIDING PILL)
+  // =========================================================================
+  const langSwitcher = document.querySelector('.lang-switcher');
+  let langGlidePill = document.querySelector('.lang-indicator-glide');
+  if (langSwitcher && !langGlidePill) {
+    langGlidePill = document.createElement('span');
+    langGlidePill.className = 'lang-indicator-glide';
+    langGlidePill.setAttribute('aria-hidden', 'true');
+    langSwitcher.appendChild(langGlidePill);
+  }
+  if (langSwitcher) {
+    langSwitcher.classList.add('has-glide-indicator');
+  }
+
+  function updateLangGlideTo(tileElement) {
+    if (!langGlidePill || !langSwitcher || !tileElement) {
+      if (langGlidePill) langGlidePill.style.opacity = '0';
+      return;
+    }
+    const switcherRect = langSwitcher.getBoundingClientRect();
+    const tileRect = tileElement.getBoundingClientRect();
+    if (switcherRect.width === 0 || tileRect.width === 0) return;
+
+    const left = tileRect.left - switcherRect.left;
+    const width = tileRect.width;
+
+    langGlidePill.style.transform = `translate3d(${left}px, 0, 0)`;
+    langGlidePill.style.width = `${width}px`;
+    langGlidePill.style.opacity = '1';
+  }
+
+  // =========================================================================
   // BAZA TŁUMACZEŃ (PL / EN / DE) - RZETELNE I POTWIERDZONE INFORMACJE
   // =========================================================================
   const translations = {
@@ -39,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_contact: "Kontakt",
 
       // Hero
-      hero_live_badge: '<span class="pulse-dot"></span> ZWROTY & OKAZJE',
+      hero_live_badge: '<span class="pulse-dot"></span> ZWROTY &amp; OKAZJE',
       hero_brand_sub: '@letino.outlet &bull; Zamówienia i kontakt przez DM',
       hero_brand_arrow: 'Napisz DM &rarr;',
       hero_title: 'Witamy w <span class="gradient-text">Letino Outlet!</span>',
@@ -82,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
       abc_c_title: "C-Ware – coś dla prawdziwych łowców okazji",
       abc_c_desc: "<p>Produkty z bardziej widocznymi śladami użytkowania, wadami wizualnymi lub innymi odstępstwami od stanu idealnego.</p><p>W zależności od produktu może również brakować części akcesoriów lub opakowania.</p><p><strong>Ważne:</strong> W przypadku C-Ware staramy się możliwie dokładnie opisać znane nam wady i niedoskonałości.</p>",
 
-      // Aktualne Okazje (Instagram Feed Placeholder)
-      section_badge: 'OFERTA & OKAZJE',
+      // Aktualne Okazje (Instagram Feed)
+      section_badge: 'OFERTA &amp; OKAZJE',
       section_heading: 'Aktualne Okazje',
       section_subtext: 'Aktualne produkty, promocje i pojedyncze okazje publikujemy na bieżąco na naszym Instagramie.',
       deals_placeholder_desc: 'Aktualne produkty, promocje i pojedyncze okazje publikujemy na bieżąco na naszym Instagramie.',
@@ -134,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       how_4_desc: 'Klient kontaktuje się z Letino Outlet przez DM lub platformę handlową i wygodnie ustala szczegóły zakupu.',
 
       // Co znajdziesz w Letino Outlet? (Kategorie & Asortyment)
-      cat_badge: 'ASORTYMENT & OKAZJE',
+      cat_badge: 'ASORTYMENT &amp; OKAZJE',
       cat_heading: 'Co znajdziesz w Letino Outlet?',
       cat_subtext: 'Nasz asortyment ciągle się zmienia – dziś znalezione, jutro może już go nie być!',
       cat_sources_title: 'Pochodzenie towaru',
@@ -172,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_q5: '5. Czy mogę zwrócić zakupiony produkt?',
       faq_a5: '<p>Oczywiście – prawa konsumenta obowiązują również przy zakupach outletowych. Szczegółowe informacje dotyczące zwrotów znajdziesz w naszej polityce zwrotów oraz w opisie konkretnej oferty.</p><p>Outlet ≠ „bez zasad”</p><p>Po prostu kupujesz produkt w określonym stanie, dlatego zawsze warto dokładnie zapoznać się z jego opisem przed zakupem.</p>',
 
-
       // Kontakt
       contact_badge: 'KONTAKT',
       contact_heading: 'Skontaktuj się z nami',
@@ -193,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_links_title: 'Nawigacja',
       footer_offer_title: 'Zakupy &amp; Oferta',
       footer_social_title: 'Kontakt &amp; Kanały',
-      socials_title: 'Znajdź nas & Napisz do nas',
+      socials_title: 'Znajdź nas &amp; Napisz do nas',
       social_ig_title: 'Instagram',
       social_ig_desc: '@letino.outlet',
       social_ebay_title: 'eBay.de',
@@ -202,10 +233,51 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_privacy: 'Polityka Prywatności',
       footer_terms: 'Regulamin Serwisu',
       copyright_text: 'Letino Outlet. Wszelkie prawa zastrzeżone.',
+      footer_tag_text: 'Zwroty &bull; Nadwyżki &bull; Okazje',
+      footer_ig_label: 'Instagram: @letino.outlet',
+      footer_ebay_label: 'Sklep eBay.de',
+      footer_categories_title: 'Kategorie Produktów',
+      footer_abc_title: 'Standard Jakości (ABC-Ware)',
+
+      // Modal prawny
+      modal_close: 'Zamknij',
+      modal_privacy_title: 'Polityka Prywatności | Letino Outlet',
+      modal_privacy_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Wskazówka:</strong> Poniższa treść stanowi informację o ochronie prywatności użytkowników serwisu Letino Outlet.
+        </div>
+        <p><strong>1. Informacje ogólne:</strong> Serwis Letino Outlet szanuje prawo do prywatności wszystkich odwiedzających witrynę.</p>
+        <p><strong>2. Pamięć lokalna (localStorage):</strong> Serwis wykorzystuje pamięć lokalną wyłącznie do zapamiętania preferencji językowych użytkownika (PL, DE, EN).</p>
+        <p><strong>3. Przekierowania do serwisów zewnętrznych:</strong> Klikając linki do profilu Instagram (@letino.outlet) lub oficjalnego sklepu w serwisie eBay.de, użytkownik przechodzi na strony podmiotów trzecich posiadających własne polityki prywatności.</p>
+        <p><strong>4. Korespondencja i zamówienia:</strong> Wszelka korespondencja prowadzona za pośrednictwem Instagram Direct (DM), platformy eBay lub poczty e-mail służy wyłącznie realizacji zapytań i transakcji.</p>
+      `,
+      modal_terms_title: 'Regulamin Serwisu | Letino Outlet',
+      modal_terms_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Wskazówka:</strong> Poniższy regulamin określa informacyjny charakter witryny oraz zasady prezentacji asortymentu.
+        </div>
+        <p><strong>1. Charakter witryny:</strong> Serwis pełni funkcję prezentacyjno-informacyjną dla asortymentu outletowego marki Letino Outlet.</p>
+        <p><strong>2. Pochodzenie i stan towarów (A-, B-, C-Ware):</strong> Oferowane produkty pochodzą ze zwrotów konsumenckich, nadwyżek magazynowych oraz ekspozycji. Każdy egzemplarz ma rzetelnie określony stan wizualny oraz techniczny.</p>
+        <p><strong>3. Ustalenia transakcyjne:</strong> Pytania o dostępność, rezerwacje i ustalenia sprzedażowe odbywają się drogą bezpośrednią (Instagram DM) lub przez oficjalny sklep Letino Outlet na platformie eBay.de.</p>
+        <p><strong>4. Niezależność:</strong> Letino Outlet jest niezależnym sprzedawcą i nie jest powiązany z koncernami ani producentami prezentowanych marek.</p>
+      `,
+
+      // Etykiety Dostępności (Accessibility aria-labels)
+      aria_lang_choice: 'Wybór języka',
+      aria_menu_open: 'Otwórz menu nawigacji',
+      aria_menu_close: 'Zamknij menu nawigacji',
+      aria_modal_close: 'Zamknij okno',
+      aria_back_to_top: 'Przewiń stronę na górę',
+      aria_ig_visit: 'Odwiedź profil Letino Outlet na Instagramie',
+      aria_ebay_visit: 'Odwiedź sklep Letino Outlet na platformie eBay.de',
+      aria_email_contact: 'Napisz e-mail do Letino Outlet',
+      aria_footer_home: 'Letino Outlet - strona główna',
+
+      // Podstrona FAQ / Centrum Pomocy
       faq_more_btn: "Zobacz pełne centrum pytań i odpowiedzi (FAQ) &rarr;",
       crumb_home: "Strona Główna",
       crumb_faq: "FAQ",
-      faq_page_badge: "CENTRUM POMOCY & FAQ",
+      faq_page_badge: "CENTRUM POMOCY &amp; FAQ",
       faq_page_title: "Centrum Pomocy <br><span class=\"gradient-text\">Pytania i Odpowiedzi (FAQ)</span>",
       faq_page_subtitle: "Wszystko, co warto wiedzieć o produktach, weryfikacji stanu technicznego, rezerwacjach oraz realizacji zamówień w Letino Outlet.",
       faq_tab_all: "Wszystkie",
@@ -252,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_cta_btn: "Napisz na Instagramie &rarr;",
       faq_cta_home: "Wróć do strony głównej",
       faq_doc_title: "FAQ – Pytania i Odpowiedzi | Letino Outlet",
-      faq_doc_desc: "Odpowiedzi na pytania dotyczące pochodzenia sprzętu, weryfikacji stanu technicznego, zakupu oraz wysyłki w Letino Outlet.",
+      faq_doc_desc: "Odpowiedzi na pytania dotyczące pochodzenia sprzętu, weryfikacji stanu technicznego, zakupu oraz wysyłki w Letino Outlet."
     },
 
     en: {
@@ -273,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_contact: "Contact",
 
       // Hero
-      hero_live_badge: '<span class="pulse-dot"></span> RETURNS & OVERSTOCK',
+      hero_live_badge: '<span class="pulse-dot"></span> RETURNS &amp; DEALS',
       hero_brand_sub: '@letino.outlet &bull; Inquiries & orders via DM',
       hero_brand_arrow: 'Send DM &rarr;',
       hero_title: 'Welcome to <span class="gradient-text">Letino Outlet!</span>',
@@ -368,13 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
       how_4_desc: 'Contact us via Instagram DM or marketplace store to confirm transaction details easily.',
 
       // What will you find at Letino Outlet? (Assortment & Categories)
-      cat_badge: 'ASSORTMENT & DEALS',
+      cat_badge: 'ASSORTMENT &amp; DEALS',
       cat_heading: 'What will you find at Letino Outlet?',
       cat_subtext: 'Our selection is constantly changing – found today, gone tomorrow!',
       cat_sources_title: 'Product origin',
-      cat_sources_list: '<li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg></span><strong>Customer returns</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><strong>Overstock & surplus lots</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 13.5 11 17 11.5 14.5 14 15 17.5 12 16 9 17.5 9.5 14 7 11.5 10.5 11 12 8"></polygon></svg></span><strong>Display items</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span><strong>Unclaimed parcels</strong></li>',
+      cat_sources_list: '<li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg></span><strong>Customer returns</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><strong>Overstock &amp; surplus lots</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 13.5 11 17 11.5 14.5 14 15 17.5 12 16 9 17.5 9.5 14 7 11.5 10.5 11 12 8"></polygon></svg></span><strong>Display items</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span><strong>Unclaimed parcels</strong></li>',
       cat_categories_title: 'As well as among others:',
-      cat_categories_list: '<li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span><strong>Electronics & gadgets</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><strong>Home & small appliances</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><strong>Beauty & skincare</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span><strong>Bags & accessories</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 12l-4-4-4 4M12 16V8"></path></svg></span><strong>Sports & recreation</strong></li>',
+      cat_categories_list: '<li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span><strong>Electronics &amp; gadgets</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><strong>Home &amp; small appliances</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><strong>Beauty &amp; skincare</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span><strong>Bags &amp; accessories</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 12l-4-4-4 4M12 16V8"></path></svg></span><strong>Sports &amp; recreation</strong></li>',
       cat_surprise: '<span class="surprise-sparkle">✨</span> <strong>…and lots of other surprises!</strong>',
       cat_changing_text: 'Our inventory is <strong>constantly changing</strong> – and that is the real magic of our outlet.',
       cat_urgency: '<span class="pulse-dot"></span> <strong>Found today. Might be gone tomorrow.</strong>',
@@ -393,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ig_banner_btn: 'Visit profile',
 
       // FAQ
-      faq_badge: 'QUESTIONS & ANSWERS',
+      faq_badge: 'QUESTIONS &amp; ANSWERS',
       faq_heading: 'FAQ – Frequently Asked Questions',
       faq_q1: '1. What does Letino Outlet sell?',
       faq_a1: '<p>In our store you will find primarily customer returns, warehouse overstocks, ex-display items, and undelivered parcels. The range is very diverse – from electronics and small appliances to home & beauty, sports, bags, and many other interesting finds.</p>',
@@ -405,7 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_a4: '<p>Because we do not sell them at regular retail store prices.</p><p>We buy returns, surplus stock, and products from various outlet sources, allowing us to offer them at attractive discount prices.</p><p>You save money, and the product gets a second life. Win-win!</p>',
       faq_q5: '5. Can I return a purchased item?',
       faq_a5: '<p>Of course – consumer rights also apply to outlet purchases. Detailed return information can be found in our returns policy and in each offer description.</p><p>Outlet ≠ "without rules"</p><p>You simply buy a product in a specific condition, which is why we always recommend reviewing its description before purchase.</p>',
-
 
       // Contact
       contact_badge: 'CONTACT',
@@ -427,27 +498,68 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_links_title: 'Navigation',
       footer_offer_title: 'Shop &amp; Offers',
       footer_social_title: 'Contact &amp; Channels',
-      socials_title: 'Find Us & Message Us',
+      socials_title: 'Find Us &amp; Message Us',
       social_ig_title: 'Instagram',
       social_ig_desc: '@letino.outlet',
       social_ebay_title: 'eBay.de',
       social_ebay_desc: 'Letino Outlet Store',
-      legal_notice: '<strong>Legal Notice:</strong> <strong>Letino Outlet</strong> is an independent reseller of customer returns and overstock merchandise. The site is not affiliated with, operated by, or sponsored by any external corporation or product manufacturers. All trademarks belong to their respective owners.',
+      legal_notice: '<strong>Legal Notice:</strong> The <strong>Letino Outlet</strong> service is an independent reseller of products originating from customer returns and warehouse overstock. The service is not affiliated with, operated by, or sponsored by any external corporation or manufacturers of the featured brands. All trademarks and brand names belong to their respective legal owners and are used strictly for informational purposes.',
       footer_privacy: 'Privacy Policy',
       footer_terms: 'Terms of Service',
       copyright_text: 'Letino Outlet. All rights reserved.',
-      faq_more_btn: "View Full FAQ & Help Center &rarr;",
+      footer_tag_text: 'Returns &bull; Overstock &bull; Deals',
+      footer_ig_label: 'Instagram: @letino.outlet',
+      footer_ebay_label: 'eBay.de Store',
+      footer_categories_title: 'Product Categories',
+      footer_abc_title: 'Quality Standard (ABC-Ware)',
+
+      // Legal Modal
+      modal_close: 'Close',
+      modal_privacy_title: 'Privacy Policy | Letino Outlet',
+      modal_privacy_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Note:</strong> The following outlines user privacy protection guidelines for Letino Outlet.
+        </div>
+        <p><strong>1. General Information:</strong> Letino Outlet respects the privacy rights of all visitors to our website.</p>
+        <p><strong>2. Browser Local Storage:</strong> This website uses browser localStorage solely to store your language preference (PL, DE, EN).</p>
+        <p><strong>3. External Links:</strong> When following links to our Instagram profile (@letino.outlet) or official eBay.de store, you visit external platforms governed by their respective privacy policies.</p>
+        <p><strong>4. Inquiries &amp; Orders:</strong> Communications and orders handled via Instagram Direct Message (DM), eBay marketplace, or official email are used exclusively to process your inquiry and fulfill transactions.</p>
+      `,
+      modal_terms_title: 'Terms of Service | Letino Outlet',
+      modal_terms_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Note:</strong> These terms define the informational and catalog scope of this website.
+        </div>
+        <p><strong>1. Website Scope:</strong> The Letino Outlet website serves as an informational catalog presenting current outlet stock and deals.</p>
+        <p><strong>2. Merchandise Grading (A-, B-, C-Ware):</strong> Products originate from customer returns, warehouse surpluses, and ex-display stock. Every unit includes an honest description of technical function and visual condition.</p>
+        <p><strong>3. Purchases &amp; Reservations:</strong> Inquiries, item reservations, and order fulfillment are coordinated via Instagram Direct (DM) or through our official eBay.de store with full buyer protection.</p>
+        <p><strong>4. Independence Notice:</strong> Letino Outlet is an independent merchandise reseller and is not affiliated with, sponsored by, or endorsed by featured brand manufacturers.</p>
+      `,
+
+      // Accessibility aria-labels
+      aria_lang_choice: 'Language selection',
+      aria_menu_open: 'Open navigation menu',
+      aria_menu_close: 'Close navigation menu',
+      aria_modal_close: 'Close window',
+      aria_back_to_top: 'Scroll page to top',
+      aria_ig_visit: 'Visit Letino Outlet on Instagram',
+      aria_ebay_visit: 'Visit Letino Outlet store on eBay.de',
+      aria_email_contact: 'Send an email to Letino Outlet',
+      aria_footer_home: 'Letino Outlet - home page',
+
+      // FAQ Page
+      faq_more_btn: "View Full FAQ &amp; Help Center &rarr;",
       crumb_home: "Home",
       crumb_faq: "FAQ",
-      faq_page_badge: "HELP CENTER & FAQ",
-      faq_page_title: "Help Center <br><span class=\"gradient-text\">Questions & Answers (FAQ)</span>",
+      faq_page_badge: "HELP CENTER &amp; FAQ",
+      faq_page_title: "Help Center <br><span class=\"gradient-text\">Questions &amp; Answers (FAQ)</span>",
       faq_page_subtitle: "Everything you need to know about products, condition checks, reservations, and order fulfillment at Letino Outlet.",
       faq_tab_all: "All",
-      faq_tab_products: "Products & Condition",
-      faq_tab_orders: "Purchasing & Reserve",
-      faq_tab_shipping: "Shipping & Delivery",
-      faq_tab_safety: "Safety & Contact",
-      cat_title_products: "Products & Technical Condition",
+      faq_tab_products: "Products &amp; Condition",
+      faq_tab_orders: "Purchasing &amp; Reserve",
+      faq_tab_shipping: "Shipping &amp; Delivery",
+      faq_tab_safety: "Safety &amp; Contact",
+      cat_title_products: "Products &amp; Technical Condition",
       fq_p1: "Are the products in Letino Outlet new or used?",
       fa_p1: "Letino Outlet offers products from customer returns and warehouse overstock. Some items are brand new in open or damaged boxes, while others are demo or returned units. The exact condition and grading of each product are always described honestly in each listing.",
       fq_p2: "How is merchandise inspected prior to sale?",
@@ -458,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fa_p4: "Our inventory originates from customer returns and warehouse overstock from the European market.",
       fq_p5: "Are original accessories included?",
       fa_p5: "Package completeness is explicitly specified in every item description. The vast majority of our units include complete factory accessories (cables, adapters, attachments).",
-      cat_title_orders: "Purchasing & Reservations",
+      cat_title_orders: "Purchasing &amp; Reservations",
       fq_o1: "Where can I see currently available deals?",
       fa_o1: "New stock arrivals, unboxings, and individual deals are posted first on our Instagram account (@letino.outlet). Selected items are also available in our eBay store.",
       fq_o2: "Why are items on the homepage marked as 'Sample Offer'?",
@@ -467,21 +579,28 @@ document.addEventListener('DOMContentLoaded', () => {
       fa_o3: "Simply send us a Direct Message (DM) on Instagram @letino.outlet. We reply promptly, share extra detailed photos, and arrange order details.",
       fq_o4: "Why are Letino Outlet prices so affordable?",
       fa_o4: "Savings stem from sourcing overstock and customer returns (often with open boxes). This allows you to acquire fully tested, premium brand gear at a fraction of retail price.",
-      cat_title_shipping: "Shipping & Fulfillment",
+      cat_title_shipping: "Shipping &amp; Fulfillment",
       fq_s1: "How is order shipping handled?",
       fa_s1: "Orders are shipped via dependable courier services or parcel lockers. Shipping methods and costs are confirmed during DM conversation on Instagram or as listed on eBay.",
       fq_s2: "How does purchasing via eBay work?",
       fa_s2: "For items listed on our eBay.de store, transactions follow standard eBay checkout, covered by eBay Buyer Protection with automated parcel tracking.",
       fq_s3: "How is equipment secured for transit?",
       fa_s3: "Every shipment is carefully packed with heavy-duty cardboard boxes, bubble wrap, and shock-absorbing fillers to ensure electronics arrive in flawless condition.",
-      cat_title_safety: "Safety & Contact",
+      cat_title_safety: "Safety &amp; Contact",
       fq_c1: "What are the contact channels for Letino Outlet?",
       fa_c1: "The primary and fastest channel is sending a Direct Message (DM) on Instagram @letino.outlet. You may also contact us via email at letino.outlet@gmail.com or eBay messaging.",
       fq_c2: "Is Letino Outlet affiliated with the product manufacturers?",
       fa_c2: "No. Letino Outlet is an independent reseller and is not affiliated with, sponsored by, or endorsed by brand manufacturers. All trademarks belong to their lawful owners and are used purely for identification.",
       fq_c3: "What if I have another question not listed here?",
-      fa_c3: "Message us directly on Instagram @letino.outlet or email letino.outlet@gmail.com – we will happily provide detailed answers and advice."
+      fa_c3: "Message us directly on Instagram @letino.outlet or email letino.outlet@gmail.com – we will happily provide detailed answers and advice.",
+      faq_cta_title: "Have Additional Questions?",
+      faq_cta_desc: "Send us a Direct Message (DM) on Instagram @letino.outlet. We are glad to help and advise on any product!",
+      faq_cta_btn: "Message on Instagram &rarr;",
+      faq_cta_home: "Back to Home",
+      faq_doc_title: "FAQ – Questions &amp; Answers | Letino Outlet",
+      faq_doc_desc: "Answers to questions regarding merchandise origin, condition grading, ordering, and shipping at Letino Outlet."
     },
+
     de: {
       doc_title: "Letino Outlet | Retouren & Markenschnäppchen",
       doc_desc: "Letino Outlet – geprüfte Ware aus Kundenretouren und Restposten zu Spitzenpreisen.",
@@ -489,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Navigation
       nav_home: "Startseite",
       nav_about: "Über Letino",
-      nav_abc: "ABC Ware",
+      nav_abc: "ABC-Ware",
       nav_deals: "Angebote",
       nav_why: "Warum Letino?",
       nav_how: "So funktioniert's",
@@ -500,8 +619,8 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_contact: "Kontakt",
 
       // Hero
-      hero_live_badge: '<span class="pulse-dot"></span> RETOUREN & ANGEBOTE',
-      hero_brand_sub: '@letino.outlet &bull; Bestellungen & Kontakt per DM',
+      hero_live_badge: '<span class="pulse-dot"></span> RETOUREN &amp; ANGEBOTE',
+      hero_brand_sub: '@letino.outlet &bull; Bestellungen &amp; Kontakt per DM',
       hero_brand_arrow: 'DM schreiben &rarr;',
       hero_title: 'Willkommen bei <span class="gradient-text">Letino Outlet!</span>',
       hero_subtitle: '<h3 class="hero-subheading">Überraschungen inklusive. Schnäppchen – immer.</h3>' +
@@ -595,13 +714,13 @@ document.addEventListener('DOMContentLoaded', () => {
       how_4_desc: 'Kontaktieren Sie uns bequem via Instagram DM oder Marktplatz für eine reibungslose Abwicklung.',
 
       // Was finden Sie im Letino Outlet? (Sortiment & Kategorien)
-      cat_badge: 'SORTIMENT & SCHNÄPPCHEN',
+      cat_badge: 'SORTIMENT &amp; SCHNÄPPCHEN',
       cat_heading: 'Was finden Sie im Letino Outlet?',
       cat_subtext: 'Unser Sortiment wechselt ständig – heute entdeckt, morgen vielleicht schon vergriffen!',
       cat_sources_title: 'Herkunft der Ware',
       cat_sources_list: '<li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg></span><strong>Kundenretouren</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><strong>Überbestände und Restposten</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 13.5 11 17 11.5 14.5 14 15 17.5 12 16 9 17.5 9.5 14 7 11.5 10.5 11 12 8"></polygon></svg></span><strong>Ausstellungsstücke</strong></li><li class="what-find-item"><span class="item-icon-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span><strong>Unzustellbare Pakete</strong></li>',
       cat_categories_title: 'Sowie unter anderem:',
-      cat_categories_list: '<li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span><strong>Elektronik & Technik</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><strong>Haushalt & kleine Elektrogeräte</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><strong>Beauty & Körperpflege</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span><strong>Taschen & Accessoires</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 12l-4-4-4 4M12 16V8"></path></svg></span><strong>Sport & Freizeit</strong></li>',
+      cat_categories_list: '<li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span><strong>Elektronik &amp; Technik</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><strong>Haushalt &amp; kleine Elektrogeräte</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><strong>Beauty &amp; Körperpflege</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span><strong>Taschen &amp; Accessoires</strong></li><li class="what-find-item"><span class="item-icon-pill accent-pill"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 12l-4-4-4 4M12 16V8"></path></svg></span><strong>Sport &amp; Freizeit</strong></li>',
       cat_surprise: '<span class="surprise-sparkle">✨</span> <strong>…und viele weitere Überraschungen!</strong>',
       cat_changing_text: 'Unser Sortiment <strong>wechselt ständig</strong> – genau das macht den besonderen Reiz unseres Outlets aus.',
       cat_urgency: '<span class="pulse-dot"></span> <strong>Heute entdeckt. Morgen vielleicht schon weg.</strong>',
@@ -620,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ig_banner_btn: 'Zum Profil',
 
       // FAQ
-      faq_badge: 'FRAGEN & ANTWORTEN',
+      faq_badge: 'FRAGEN &amp; ANTWORTEN',
       faq_heading: 'FAQ – Häufig gestellte Fragen',
       faq_q1: '1. Was verkauft Letino Outlet?',
       faq_a1: '<p>In unserem Shop finden Sie vor allem Kundenretouren, Lagerüberhänge, Ausstellungsstücke und unzustellbare Pakete. Das Sortiment ist äußerst vielfältig – von Elektronik und Haushaltskleingeräten über Home & Beauty bis hin zu Sport, Taschen und vielen weiteren Highlights.</p>',
@@ -632,7 +751,6 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_a4: '<p>Weil wir nicht zu klassischen Ladenpreisen verkaufen.</p><p>Wir erwerben u.a. Retouren, Überbestände und Waren aus verschiedenen Outlet-Quellen, wodurch wir sie zu besonders attraktiven Preisen anbieten können.</p><p>Sie sparen bares Geld, das Produkt erhält eine zweite Chance. Win-win!</p>',
       faq_q5: '5. Kann ich einen gekauften Artikel zurückgeben?',
       faq_a5: '<p>Selbstverständlich – Verbraucherrechte gelten auch beim Outlet-Kauf. Detaillierte Informationen zu Rücksendungen finden Sie in unseren Rückgaberichtlinien sowie in der jeweiligen Angebotsbeschreibung.</p><p>Outlet ≠ „ohne Regeln“</p><p>Sie kaufen das Produkt einfach in einem deklarierten Zustand, daher lohnt es sich stets, die Beschreibung vor dem Kauf genau zu lesen.</p>',
-
 
       // Kontakt
       contact_badge: 'KONTAKT',
@@ -654,27 +772,68 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_links_title: 'Navigation',
       footer_offer_title: 'Einkaufen &amp; Angebote',
       footer_social_title: 'Kontakt &amp; Kanäle',
-      socials_title: 'Finde uns & Schreib uns',
+      socials_title: 'Finde uns &amp; Schreib uns',
       social_ig_title: 'Instagram',
       social_ig_desc: '@letino.outlet',
       social_ebay_title: 'eBay.de',
       social_ebay_desc: 'Letino Outlet eBay-Shop',
-      legal_notice: '<strong>Rechtlicher Hinweis:</strong> <strong>Letino Outlet</strong> ist ein unabhängiger Wiederverkäufer von Kundenretouren und Restposten und steht in keiner geschäftlichen Verbindung zu externen Konzernen oder Markenherstellern. Alle Marken gehören ihren jeweiligen Eigentümern.',
+      legal_notice: '<strong>Rechtlicher Hinweis:</strong> Der Service <strong>Letino Outlet</strong> ist ein unabhängiger Wiederverkäufer von Waren aus Kundenretouren und Restposten. Der Service ist weder mit externen Konzernen noch mit Herstellern der dargestellten Marken verbunden, wird von diesen betrieben oder gesponsert. Sämtliche Marken und Markennamen gehören ihren rechtmäßigen Eigentümern und werden ausschließlich zu Informationszwecken verwendet.',
       footer_privacy: 'Datenschutzerklärung',
       footer_terms: 'Nutzungsbedingungen',
       copyright_text: 'Letino Outlet. Alle Rechte vorbehalten.',
-      faq_more_btn: "Vollständiges FAQ & Hilfe-Center ansehen &rarr;",
+      footer_tag_text: 'Retouren &bull; Restposten &bull; Schnäppchen',
+      footer_ig_label: 'Instagram: @letino.outlet',
+      footer_ebay_label: 'eBay.de Shop',
+      footer_categories_title: 'Produktkategorien',
+      footer_abc_title: 'Qualitätsstandard (ABC-Ware)',
+
+      // Rechtliches Modal
+      modal_close: 'Schließen',
+      modal_privacy_title: 'Datenschutzerklärung | Letino Outlet',
+      modal_privacy_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Hinweis:</strong> Die nachfolgenden Bestimmungen informieren über den Datenschutz bei Letino Outlet.
+        </div>
+        <p><strong>1. Allgemeine Hinweise:</strong> Letino Outlet respektiert die Privatsphäre aller Besucher dieser Webseite.</p>
+        <p><strong>2. Lokaler Speicher (localStorage):</strong> Diese Webseite nutzt den lokalen Browserspeicher ausschließlich zur Speicherung Ihrer Sprachauswahl (DE, EN, PL).</p>
+        <p><strong>3. Externe Verlinkungen:</strong> Beim Anklicken von Links zu unserem Instagram-Profil (@letino.outlet) oder unserem eBay.de-Shop wechseln Sie auf externe Plattformen mit eigenständigen Datenschutzrichtlinien.</p>
+        <p><strong>4. Anfragen &amp; Bestellungen:</strong> Sämtliche Korrespondenz via Instagram Direct (DM), eBay-Nachrichten oder E-Mail wird ausschließlich zur Bearbeitung Ihrer Anfrage und Kaufabwicklung verwendet.</p>
+      `,
+      modal_terms_title: 'Nutzungsbedingungen | Letino Outlet',
+      modal_terms_body: `
+        <div class="legal-placeholder-alert">
+          <strong>Hinweis:</strong> Diese Bedingungen regeln den Informations- und Präsentationszweck dieser Webseite.
+        </div>
+        <p><strong>1. Zweck der Webseite:</strong> Die Letino Outlet Webseite dient der Präsentation und Information über unser Sortiment und aktuelle Outlet-Angebote.</p>
+        <p><strong>2. Zustand der Ware (A-, B-, C-Ware):</strong> Die angebotenen Artikel stammen aus Kundenretouren, Lagerüberbeständen und Vorführgeräten. Jedes Exemplar wird mit transparentem technischen und optischen Zustand deklariert.</p>
+        <p><strong>3. Kaufabwicklung &amp; Reservierung:</strong> Anfragen, Reservierungen und Kaufabstimmungen erfolgen direkt über Instagram DM oder über unseren verifizierten eBay.de-Shop mit vollem Käuferschutz.</p>
+        <p><strong>4. Unabhängigkeit:</strong> Letino Outlet ist ein unabhängiger Wiederverkäufer und steht in keinerlei geschäftlicher Verbindung zu den Herstellern der angebotenen Marken.</p>
+      `,
+
+      // Accessibility aria-labels
+      aria_lang_choice: 'Sprachauswahl',
+      aria_menu_open: 'Navigationsmenü öffnen',
+      aria_menu_close: 'Navigationsmenü schließen',
+      aria_modal_close: 'Fenster schließen',
+      aria_back_to_top: 'Nach oben scrollen',
+      aria_ig_visit: 'Letino Outlet auf Instagram besuchen',
+      aria_ebay_visit: 'Letino Outlet eBay.de-Shop besuchen',
+      aria_email_contact: 'E-Mail an Letino Outlet senden',
+      aria_footer_home: 'Letino Outlet - Startseite',
+
+      // FAQ Unterseite
+      faq_more_btn: "Vollständiges FAQ &amp; Hilfe-Center ansehen &rarr;",
       crumb_home: "Startseite",
       crumb_faq: "FAQ",
-      faq_page_badge: "HILFE-CENTER & FAQ",
-      faq_page_title: "Hilfe-Center <br><span class=\"gradient-text\">Fragen & Antworten (FAQ)</span>",
+      faq_page_badge: "HILFE-CENTER &amp; FAQ",
+      faq_page_title: "Hilfe-Center <br><span class=\"gradient-text\">Fragen &amp; Antworten (FAQ)</span>",
       faq_page_subtitle: "Alles Wissenswerte über Produkte, Zustandsprüfung, Reservierungen und Bestellabwicklung bei Letino Outlet.",
       faq_tab_all: "Alle",
-      faq_tab_products: "Produkte & Zustand",
-      faq_tab_orders: "Kauf & Reservierung",
-      faq_tab_shipping: "Versand & Lieferung",
-      faq_tab_safety: "Sicherheit & Kontakt",
-      cat_title_products: "Produkte & Technischer Zustand",
+      faq_tab_products: "Produkte &amp; Zustand",
+      faq_tab_orders: "Kauf &amp; Reservierung",
+      faq_tab_shipping: "Versand &amp; Lieferung",
+      faq_tab_safety: "Sicherheit &amp; Kontakt",
+      cat_title_products: "Produkte &amp; Technischer Zustand",
       fq_p1: "Sind die Produkte bei Letino Outlet neu oder gebraucht?",
       fa_p1: "Letino Outlet führt Waren aus Kundenretouren und Überbeständen. Einige Artikel sind fabrikneu in geöffneter oder beschädigter Verpackung, andere sind Ausstellungs- oder Retourenstücke. Der genaue Zustand wird in jeder Artikelbeschreibung transparent angegeben.",
       fq_p2: "Wie werden die Geräte vor dem Verkauf geprüft?",
@@ -685,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fa_p4: "Unsere Produkte stammen aus Kundenretouren und Restposten aus dem europäischen Markt.",
       fq_p5: "Ist das Originalzubehör im Lieferumfang enthalten?",
       fa_p5: "Die Vollständigkeit des Sets ist bei jedem Angebot detailliert angegeben. Die überwiegende Mehrheit der Artikel enthält das komplette Werkszubehör (Kabel, Netzteile, Zubehör).",
-      cat_title_orders: "Kauf & Reservierung",
+      cat_title_orders: "Kauf &amp; Reservierung",
       fq_o1: "Wo finde ich die aktuell verfügbaren Angebote?",
       fa_o1: "Neuzugänge, Unboxings und Einzelangebote veröffentlichen wir zuerst auf unserem Instagram-Profil (@letino.outlet). Ausgewählte Artikel sind auch in unserem eBay-Shop gelistet.",
       fq_o2: "Warum sind Produkte auf der Startseite als 'Beispielangebot' gekennzeichnet?",
@@ -694,14 +853,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fa_o3: "Schreiben Sie uns einfach eine Direktnachricht (DM) auf Instagram @letino.outlet. Wir antworten zügig, senden Ihnen Detailfotos und vereinbaren den Kauf.",
       fq_o4: "Warum sind die Preise bei Letino Outlet so günstig?",
       fa_o4: "Die Ersparnis entsteht durch den Bezug von Retouren und Überbeständen (oft mit geöffneter Verpackung). So erhalten Sie einwandfreie Markenware mit erheblichem Preisnachlass.",
-      cat_title_shipping: "Versand & Lieferung",
+      cat_title_shipping: "Versand &amp; Lieferung",
       fq_s1: "Wie erfolgt der Versand der Bestellungen?",
       fa_s1: "Der Versand erfolgt über zuverlässige Paketdienste. Die Versandart wird im direkten Kontakt auf Instagram oder gemäß dem eBay-Angebot abgestimmt.",
       fq_s2: "Wie läuft der Kauf über eBay ab?",
       fa_s2: "Für Artikel in unserem eBay.de-Shop gilt der reguläre eBay-Kaufprozess mit vollem eBay-Käuferschutz und automatischer Sendungsverfolgung.",
       fq_s3: "Wie wird die Ware für den Transport geschützt?",
       fa_s3: "Jede Sendung wird sorgfältig mit stabilen Kartonagen, Luftpolsterfolie und Dämmmaterial verpackt, damit empfindliche Elektronik unbeschadet bei Ihnen ankommt.",
-      cat_title_safety: "Sicherheit & Kontakt",
+      cat_title_safety: "Sicherheit &amp; Kontakt",
       fq_c1: "Welche Kontaktkanäle gibt es bei Letino Outlet?",
       fa_c1: "Der schnellste Weg ist eine Direktnachricht (DM) auf Instagram @letino.outlet. Alternativ erreichen Sie uns per E-Mail unter letino.outlet@gmail.com oder über eBay-Nachrichten.",
       fq_c2: "Ist Letino Outlet mit den Herstellern der Marken verbunden?",
@@ -712,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_cta_desc: "Schreiben Sie uns per Direktnachricht (DM) auf Instagram @letino.outlet. Wir beraten Sie gerne persönlich!",
       faq_cta_btn: "Auf Instagram schreiben &rarr;",
       faq_cta_home: "Zur Startseite zurückkehren",
-      faq_doc_title: "FAQ – Fragen & Antworten | Letino Outlet",
+      faq_doc_title: "FAQ – Fragen &amp; Antworten | Letino Outlet",
       faq_doc_desc: "Antworten auf Fragen zu Produktherkunft, Zustandsprüfung, Bestellung und Versand bei Letino Outlet."
     }
   };
@@ -732,6 +891,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (dict.doc_title) {
         document.title = dict.doc_title;
       }
+
+      // Aktualizacja meta description
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         if (isFaq && dict.faq_doc_desc) {
@@ -741,6 +902,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      // Aktualizacja tagów Open Graph i Twitter
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle && dict.doc_title) ogTitle.setAttribute('content', dict.doc_title);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc && dict.doc_desc) ogDesc.setAttribute('content', dict.doc_desc);
+      const twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle && dict.doc_title) twTitle.setAttribute('content', dict.doc_title);
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc && dict.doc_desc) twDesc.setAttribute('content', dict.doc_desc);
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) {
+        ogLocale.setAttribute('content', selectedLang === 'pl' ? 'pl_PL' : (selectedLang === 'en' ? 'en_US' : 'de_DE'));
+      }
+
       // Aktualizacja wszystkich elementów z data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -748,6 +923,20 @@ document.addEventListener('DOMContentLoaded', () => {
           el.innerHTML = dict[key];
         }
       });
+
+      // Aktualizacja elementów z data-i18n-aria
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        if (dict[key] !== undefined) {
+          el.setAttribute('aria-label', dict[key]);
+        }
+      });
+
+      // Aktualizacja przycisku zamknięcia modalu, jeśli istnieje
+      const modalClose = document.getElementById('modalCloseAction');
+      if (modalClose && dict.modal_close) {
+        modalClose.textContent = dict.modal_close;
+      }
 
       // Aktualizacja wyglądu kafelków
       document.querySelectorAll('.lang-tile').forEach(tile => {
@@ -776,38 +965,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('lang-fade-out');
       }, 120);
     }
-  }
-
-  // =========================================================================
-  // PŁYNNIE SUNĄCY WSKAŹNIK WYBORU JĘZYKA (LANGUAGE GLIDING PILL)
-  // =========================================================================
-  const langSwitcher = document.querySelector('.lang-switcher');
-  let langGlidePill = document.querySelector('.lang-indicator-glide');
-  if (langSwitcher && !langGlidePill) {
-    langGlidePill = document.createElement('span');
-    langGlidePill.className = 'lang-indicator-glide';
-    langGlidePill.setAttribute('aria-hidden', 'true');
-    langSwitcher.appendChild(langGlidePill);
-  }
-  if (langSwitcher) {
-    langSwitcher.classList.add('has-glide-indicator');
-  }
-
-  function updateLangGlideTo(tileElement) {
-    if (!langGlidePill || !langSwitcher || !tileElement) {
-      if (langGlidePill) langGlidePill.style.opacity = '0';
-      return;
-    }
-    const switcherRect = langSwitcher.getBoundingClientRect();
-    const tileRect = tileElement.getBoundingClientRect();
-    if (switcherRect.width === 0 || tileRect.width === 0) return;
-
-    const left = tileRect.left - switcherRect.left;
-    const width = tileRect.width;
-
-    langGlidePill.style.transform = `translateX(${left}px)`;
-    langGlidePill.style.width = `${width}px`;
-    langGlidePill.style.opacity = '1';
   }
 
   // Obsługa kafelków językowych
@@ -964,29 +1121,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openLegalModal(type) {
     if (!legalModal || !modalTitle || !modalBody) return;
+    const currentLang = document.documentElement.lang || 'de';
+    const dict = translations[currentLang] || translations.de;
 
     if (type === 'privacy') {
-      modalTitle.textContent = 'Polityka Prywatności Letino Outlet';
-      modalBody.innerHTML = `
-        <div class="legal-placeholder-alert">
-          <strong>Wskazówka:</strong> Poniższa treść stanowi informację o ochronie prywatności. Właściwe dane rejestrowe administratora zostaną uzupełnione przez właściciela serwisu.
-        </div>
-        <p><strong>1. Informacje ogólne:</strong> Serwis Letino Outlet szanuje prywatność użytkowników odwiedzających witrynę.</p>
-        <p><strong>2. Pamięć przeglądarki:</strong> Serwis wykorzystuje pamięć lokalną (localStorage) wyłącznie do zapamiętania preferencji językowych (PL / EN / DE).</p>
-        <p><strong>3. Przekierowania do serwisów zewnętrznych:</strong> Klikając linki do profilu Instagram lub sklepu eBay, użytkownik przechodzi na strony podmiotów trzecich posiadające odrębne zasady prywatności.</p>
-        <p><strong>4. Dane kontaktowe:</strong> Wszelka korespondencja prowadzona za pośrednictwem Instagram Direct lub platform handlowych podlega zasadom tych platform.</p>
-      `;
+      modalTitle.textContent = dict.modal_privacy_title || 'Datenschutzerklärung';
+      modalBody.innerHTML = dict.modal_privacy_body || '';
     } else {
-      modalTitle.textContent = 'Regulamin Serwisu Letino Outlet';
-      modalBody.innerHTML = `
-        <div class="legal-placeholder-alert">
-          <strong>Wskazówka:</strong> Poniższa treść określa informacyjny charakter witryny.
-        </div>
-        <p><strong>1. Charakter witryny:</strong> Niniejszy serwis pełni funkcję prezentacyjno-informacyjną dla oferty outletowej marki Letino Outlet.</p>
-        <p><strong>2. Produkty:</strong> Oferowane towary pochodzą ze zwrotów konsumenckich oraz nadwyżek magazynowych. Każdy egzemplarz ma określony stan wizualny oraz techniczny w opisie.</p>
-        <p><strong>3. Zakup i kontakt:</strong> Pytania o dostępność oraz ustalenia transakcyjne odbywają się drogą bezpośrednią (Instagram DM) lub przez dedykowane platformy sprzedaży.</p>
-        <p><strong>4. Niezależność:</strong> Letino Outlet jest niezależnym podmiotem i nie jest powiązany z zewnętrznymi korporacjami ani producentami prezentowanych marek.</p>
-      `;
+      modalTitle.textContent = dict.modal_terms_title || 'Nutzungsbedingungen';
+      modalBody.innerHTML = dict.modal_terms_body || '';
+    }
+
+    if (modalCloseAction && dict.modal_close) {
+      modalCloseAction.textContent = dict.modal_close;
     }
 
     legalModal.classList.add('is-open');
@@ -1155,7 +1302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const left = linkRect.left - listRect.left;
       const width = linkRect.width;
 
-      glideIndicator.style.transform = `translateX(${left}px)`;
+      glideIndicator.style.transform = `translate3d(${left}px, 0, 0)`;
       glideIndicator.style.width = `${width}px`;
       glideIndicator.style.opacity = '1';
     }
@@ -1230,7 +1377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Płynne, precyzyjne przewijanie z uwzględnieniem sticky header
     function smoothScrollTo(targetEl) {
       if (!targetEl) return;
-      const headerOffset = 70;
+      const headerOffset = 76;
       const elementPosition = targetEl.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
@@ -1317,17 +1464,33 @@ document.addEventListener('DOMContentLoaded', () => {
       el: document.getElementById(item.id)
     })).filter(item => item.el !== null);
 
+    function getElementTop(el) {
+      const rect = el.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      return rect.top + scrollTop;
+    }
+
     let sectionPositions = [];
     function updateSectionPositions() {
       sectionPositions = trackedElements.map(item => {
-        const top = item.el.offsetTop;
+        const top = getElementTop(item.el);
         const height = item.el.offsetHeight;
         return { key: item.key, top, bottom: top + height };
       });
     }
 
     updateSectionPositions();
-    window.addEventListener('resize', updateSectionPositions, { passive: true });
+
+    let resizeDebounce = null;
+    function debouncedSectionUpdate() {
+      clearTimeout(resizeDebounce);
+      resizeDebounce = setTimeout(() => {
+        updateSectionPositions();
+        const currentActive = document.querySelector('.desktop-nav .nav-link.active');
+        if (currentActive) updateGlideTo(currentActive);
+      }, 100);
+    }
+    window.addEventListener('resize', debouncedSectionUpdate, { passive: true });
 
     // Dopasowanie pozycji po załadowaniu fontów
     if (document.fonts && document.fonts.ready) {
@@ -1338,9 +1501,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    let contactTopCached = contactSection ? (contactSection.offsetTop || 0) : 0;
+    let contactTopCached = contactSection ? getElementTop(contactSection) : 0;
     function updateFaqContactOffset() {
-      if (contactSection) contactTopCached = contactSection.offsetTop;
+      if (contactSection) contactTopCached = getElementTop(contactSection);
     }
     if (isFaqPage) {
       window.addEventListener('resize', updateFaqContactOffset, { passive: true });

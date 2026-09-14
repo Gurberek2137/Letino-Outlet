@@ -38,7 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS z parametrem wersji przeciw pamięci podręcznej (cache) -->
-  <link rel="stylesheet" href="style.css?v=4.3">
+  <link rel="stylesheet" href="style.css?v=4.5">
 
   <!-- Google Analytics 4 (Właścicielka: wpisz swój identyfikator pomiaru G-XXXXXXXXXX) -->
   <script>
@@ -110,7 +110,7 @@
 
       <div class="header-right">
         <!-- Przełącznik języka (DE / EN / PL) -->
-        <div class="lang-switcher" role="radiogroup" aria-label="Wybór języka / Language selection">
+        <div class="lang-switcher" role="radiogroup" aria-label="Wybór języka / Language selection" data-i18n-aria="aria_lang_choice">
           <button type="button" class="lang-tile active" data-lang="de" title="Deutsch" aria-label="Deutsche Sprache" role="radio" aria-checked="true">
             <span class="lang-flag-box">
               <svg class="lang-flag-svg" viewBox="0 0 640 480" width="20" height="20" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -145,7 +145,7 @@
         </div>
 
         <!-- Przycisk Instagram w nawigacji -->
-        <a href="https://www.instagram.com/letino.outlet/" target="_blank" rel="noopener noreferrer" class="nav-ig-btn" aria-label="Odwiedź profil Instagram Letino Outlet">
+        <a href="https://www.instagram.com/letino.outlet/" target="_blank" rel="noopener noreferrer" class="nav-ig-btn" aria-label="Odwiedź profil Instagram Letino Outlet" data-i18n-aria="aria_ig_visit">
           <span class="nav-ig-icon-wrap">
             <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -163,7 +163,7 @@
         </a>
 
         <!-- Przycisk Menu Mobilnego -->
-        <button type="button" class="mobile-menu-toggle" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Otwórz menu nawigacji">
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Otwórz menu nawigacji" data-i18n-aria="aria_menu_open">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -181,7 +181,7 @@
           <img src="assets/letino-logo-round.png" alt="Letino Outlet" class="mobile-drawer-icon" width="36" height="36">
           <span class="mobile-drawer-title">Letino Outlet</span>
         </a>
-        <button type="button" class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Zamknij menu">
+        <button type="button" class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Zamknij menu" data-i18n-aria="aria_menu_close">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -825,7 +825,7 @@
       <div class="footer-top-grid">
         <!-- Kolumna 1: O marce Letino Outlet -->
         <div class="footer-brand-col">
-          <a href="#top" class="footer-logo-link" aria-label="Letino Outlet strona główna">
+          <a href="#top" class="footer-logo-link" aria-label="Letino Outlet strona główna" data-i18n-aria="aria_footer_home">
             <img src="assets/letino-logo-transparent.png" alt="Letino Outlet" class="footer-logo-banner" width="160" height="34">
           </a>
           <p class="footer-brand-text" data-i18n="footer_brand_desc">
@@ -834,7 +834,7 @@
           <div class="footer-brand-badges">
             <span class="footer-pill-tag">
               <span class="footer-tag-dot" aria-hidden="true"></span>
-              <span>Zwroty &bull; Nadwyżki &bull; Okazje</span>
+              <span data-i18n="footer_tag_text">Zwroty &bull; Nadwyżki &bull; Okazje</span>
             </span>
           </div>
         </div>
@@ -856,8 +856,8 @@
           <h4 class="footer-col-title" data-i18n="footer_offer_title">Zakupy &amp; Oferta</h4>
           <ul class="footer-nav-list">
             <li><a href="#produkty" data-i18n="nav_deals">Aktualne Okazje</a></li>
-            <li><a href="#kategorie" data-i18n="nav_categories">Kategorie Produktów</a></li>
-            <li><a href="#abc-ware" data-i18n="nav_abc">Standard Jakości (ABC-Ware)</a></li>
+            <li><a href="#kategorie" data-i18n="footer_categories_title">Kategorie Produktów</a></li>
+            <li><a href="#abc-ware" data-i18n="footer_abc_title">Standard Jakości (ABC-Ware)</a></li>
             <li><a href="#platformy" data-i18n="nav_platforms">Platformy Sprzedażowe</a></li>
           </ul>
         </div>
@@ -867,7 +867,7 @@
           <h4 class="footer-col-title" data-i18n="footer_social_title">Kontakt &amp; Kanały</h4>
           <ul class="footer-contact-list">
             <li>
-              <a href="mailto:letino.outlet@gmail.com" class="footer-contact-item">
+              <a href="mailto:letino.outlet@gmail.com" class="footer-contact-item" data-i18n-aria="aria_email_contact" aria-label="Napisz e-mail do Letino Outlet">
                 <span class="footer-icon-circle email-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 </span>
@@ -875,19 +875,19 @@
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/letino.outlet/" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+              <a href="https://www.instagram.com/letino.outlet/" target="_blank" rel="noopener noreferrer" class="footer-contact-item" data-i18n-aria="aria_ig_visit" aria-label="Odwiedź profil Letino Outlet na Instagramie">
                 <span class="footer-icon-circle ig-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </span>
-                <span class="footer-contact-label">Instagram: @letino.outlet</span>
+                <span class="footer-contact-label" data-i18n="footer_ig_label">Instagram: @letino.outlet</span>
               </a>
             </li>
             <li>
-              <a href="https://www.ebay.de/str/letinooutlet" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+              <a href="https://www.ebay.de/str/letinooutlet" target="_blank" rel="noopener noreferrer" class="footer-contact-item" data-i18n-aria="aria_ebay_visit" aria-label="Odwiedź sklep Letino Outlet na eBay.de">
                 <span class="footer-icon-circle ebay-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                 </span>
-                <span class="footer-contact-label">Sklep eBay.de</span>
+                <span class="footer-contact-label" data-i18n="footer_ebay_label">Sklep eBay.de</span>
               </a>
             </li>
           </ul>
@@ -923,7 +923,7 @@
     <div class="legal-modal-card">
       <div class="legal-modal-header">
         <h3 class="legal-modal-title" id="modalTitle">Informacje prawne</h3>
-        <button type="button" class="legal-modal-close" id="modalCloseBtn" aria-label="Zamknij okno">
+        <button type="button" class="legal-modal-close" id="modalCloseBtn" aria-label="Zamknij okno" data-i18n-aria="aria_modal_close">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -934,18 +934,18 @@
         <!-- Zawartość wstrzykiwana przez JS -->
       </div>
       <div class="legal-modal-footer">
-        <button type="button" class="btn btn-secondary" id="modalCloseAction">Zamknij</button>
+        <button type="button" class="btn btn-secondary" id="modalCloseAction" data-i18n="modal_close">Zamknij</button>
       </div>
     </div>
   </div>
 
   <!-- Przycisk Powrotu na górę (Back to top) -->
-  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Przewiń stronę na górę">
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Przewiń stronę na górę" data-i18n-aria="aria_back_to_top">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
-  <script src="script.js?v=4.2"></script>
+  <script src="script.js?v=4.6"></script>
 </body>
 </html>
