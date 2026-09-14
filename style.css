@@ -830,7 +830,7 @@ button {
   padding: 84px 0 64px;
   text-align: center;
   background-color: var(--bg-deep);
-  background-image: url('assets/hero-bg.jpg');
+  background-image: url('assets/hero-bg-hires.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
