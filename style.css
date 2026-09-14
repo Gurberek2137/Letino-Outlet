@@ -5206,6 +5206,10 @@ body.lang-fade-out [data-i18n] {
   filter: brightness(1.06);
 }
 
+body.cookie-modal-open {
+  overflow: hidden;
+}
+
 /* Modal Ustawień Cookies */
 .cookie-modal {
   position: fixed;
@@ -5444,7 +5448,7 @@ body.lang-fade-out [data-i18n] {
 /* Responsywność */
 @media (max-width: 768px) {
   .cookie-banner {
-    bottom: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
     left: 12px;
     right: 12px;
     padding: 16px;

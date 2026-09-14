@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cookie_btn_reject: 'Odrzuć',
       cookie_btn_settings: 'Ustawienia',
       cookie_modal_title: 'Ustawienia plików cookie',
-      cookie_modal_desc: 'Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia.',
+      cookie_modal_desc: 'Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia lub zapoznać się ze szczegółami w naszej <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Polityce prywatności</a>.',
       cookie_cat_essential_title: 'Niezbędne',
       cookie_cat_essential_badge: 'Zawsze aktywne',
       cookie_cat_essential_desc: 'Niezbędne do prawidłowego funkcjonowania strony internetowej oraz zapamiętania wybranych preferencji (np. języka, stanu zgody na pliki cookie). Nie można ich wyłączyć.',
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cookie_btn_reject: 'Reject',
       cookie_btn_settings: 'Settings',
       cookie_modal_title: 'Cookie Settings',
-      cookie_modal_desc: 'Manage your cookie preferences. You can change your choices at any time.',
+      cookie_modal_desc: 'Manage your cookie preferences. You can change your choices at any time or read our <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Privacy Policy</a>.',
       cookie_cat_essential_title: 'Essential',
       cookie_cat_essential_badge: 'Always active',
       cookie_cat_essential_desc: 'Essential for the proper functioning of the website and remembering your preferences (e.g. language, cookie consent status). These cannot be disabled.',
@@ -919,7 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cookie_btn_reject: 'Ablehnen',
       cookie_btn_settings: 'Einstellungen',
       cookie_modal_title: 'Cookie-Einstellungen',
-      cookie_modal_desc: 'Verwalten Sie Ihre Cookie-Einstellungen. Sie können Ihre Auswahl jederzeit ändern.',
+      cookie_modal_desc: 'Verwalten Sie Ihre Cookie-Einstellungen. Sie können Ihre Auswahl jederzeit ändern oder unsere <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Datenschutzerklärung</a> lesen.',
       cookie_cat_essential_title: 'Notwendig',
       cookie_cat_essential_badge: 'Immer aktiv',
       cookie_cat_essential_desc: 'Erforderlich für den ordnungsgemäßen Betrieb der Website und das Speichern Ihrer Einstellungen (z. B. Sprache, Einwilligungsstatus). Diese können nicht deaktiviert werden.',
@@ -1788,6 +1788,8 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('letino_consent_analytics_v2', isGranted ? 'granted' : 'denied');
       localStorage.setItem('letino_consent_analytics', isGranted ? 'granted' : 'denied');
     } catch (e) {}
+
+    const gaId = window.GA_MEASUREMENT_ID || 'G-J1CEW47MBJ';
 
     if (isGranted) {
       if (typeof window.grantAnalyticsConsent === 'function') {

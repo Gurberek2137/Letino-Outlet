@@ -38,7 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS z parametrem wersji przeciw pamięci podręcznej (cache) -->
-  <link rel="stylesheet" href="style.css?v=6.1">
+  <link rel="stylesheet" href="style.css?v=6.2">
 
   <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1CEW47MBJ"></script>
@@ -56,7 +56,7 @@
     });
 
     gtag('js', new Date());
-    gtag('config', 'G-J1CEW47MBJ');
+    gtag('config', window.GA_MEASUREMENT_ID);
 
     // Interfejs do zarządzania zgodą na analitykę
     window.grantAnalyticsConsent = function() {
@@ -1033,7 +1033,7 @@
 
       <div class="cookie-modal-body">
         <p class="cookie-modal-desc" data-i18n="cookie_modal_desc">
-          Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia.
+          Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia lub zapoznać się ze szczegółami w naszej <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Polityce prywatności</a>.
         </p>
 
         <!-- Kategoria: Niezbędne -->
@@ -1077,6 +1077,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=5.7"></script>
+  <script src="script.js?v=5.8"></script>
 </body>
 </html>
