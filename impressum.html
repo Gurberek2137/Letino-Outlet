@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css?v=5.2">
+  <link rel="stylesheet" href="style.css?v=5.3">
 
   <!-- Google Analytics 4 (zachowane zgodnie z konfiguracją główną) -->
   <script>
@@ -196,23 +196,6 @@
 
       <!-- Karta dokumentu prawnego -->
       <article class="legal-doc-card">
-
-        <!-- Selektor wyboru języka dokumentu -->
-        <div class="legal-doc-lang-selector" role="region" aria-label="Wybór języka dokumentu / Language selection">
-          <div class="legal-doc-lang-label">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <span data-i18n="legal_lang_label">Język dokumentu:</span>
-          </div>
-          <div class="legal-doc-lang-pills">
-            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="de" onclick="switchLegalDocLanguage('de')" aria-pressed="true">🇩🇪 Deutsch</button>
-            <button type="button" class="legal-lang-pill-btn" data-legal-lang="pl" onclick="switchLegalDocLanguage('pl')" aria-pressed="false">🇵🇱 Polski</button>
-            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" onclick="switchLegalDocLanguage('en')" aria-pressed="false">🇬🇧 English</button>
-          </div>
-        </div>
 
         <!-- Wersja Niemiecka (DE) - Originaltext -->
         <div class="legal-doc-content" data-lang-content="de">
@@ -569,16 +552,8 @@
           blocks[i].style.display = 'none';
         }
       }
-      
-      // 2. Zaktualizuj stan pigułek wyboru języka dokumentu
-      var pills = document.querySelectorAll('.legal-lang-pill-btn');
-      for (var j = 0; j < pills.length; j++) {
-        var isAct = (pills[j].getAttribute('data-legal-lang') === lang);
-        pills[j].classList.toggle('active', isAct);
-        pills[j].setAttribute('aria-pressed', isAct ? 'true' : 'false');
-      }
 
-      // 3. Zaktualizuj kafelki wyboru w nagłówku
+      // 2. Zaktualizuj kafelki wyboru w nagłówku
       var tiles = document.querySelectorAll('.lang-tile');
       for (var k = 0; k < tiles.length; k++) {
         var isTAct = (tiles[k].getAttribute('data-lang') === lang);
@@ -586,12 +561,12 @@
         tiles[k].setAttribute('aria-checked', isTAct ? 'true' : 'false');
       }
       
-      // 4. Zapisz preferencję
+      // 3. Zapisz preferencję
       try {
         localStorage.setItem('letino_lang', lang);
       } catch(e) {}
       
-      // 5. Jeśli script.js jest załadowany, zsynchronizuj resztę strony
+      // 4. Jeśli script.js jest załadowany, zsynchronizuj resztę strony
       if (typeof window.setSiteLanguage === 'function') {
         window.setSiteLanguage(lang, true);
       }
@@ -608,6 +583,6 @@
     })();
   </script>
 
-  <script src="script.js?v=5.2"></script>
+  <script src="script.js?v=5.3"></script>
 </body>
 </html>
