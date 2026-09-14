@@ -4876,3 +4876,75 @@ body.lang-fade-out [data-i18n] {
   margin: 28px 0;
 }
 
+.legal-doc-lang-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-gold-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 32px;
+}
+
+.legal-doc-lang-label {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legal-doc-lang-label svg {
+  color: var(--letino-gold-light);
+  flex-shrink: 0;
+}
+
+.legal-doc-lang-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.legal-lang-pill-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+}
+
+.legal-lang-pill-btn:hover {
+  border-color: var(--letino-gold);
+  color: #fff;
+  background: rgba(230, 180, 80, 0.08);
+}
+
+.legal-lang-pill-btn.active {
+  background: var(--letino-gold-bg);
+  border-color: var(--letino-gold);
+  color: var(--letino-gold-light);
+  box-shadow: 0 0 14px rgba(230, 180, 80, 0.22);
+}
+
+@media (max-width: 640px) {
+  .legal-doc-lang-selector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+}
+

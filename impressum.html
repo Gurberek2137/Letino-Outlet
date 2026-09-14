@@ -198,11 +198,29 @@
       <article class="legal-doc-card">
         
         <header class="legal-doc-header">
-          <span class="legal-doc-badge">Rechtliche Angaben</span>
+          <span class="legal-doc-badge">Rechtliche Angaben / Legal Notice</span>
           <h1 class="legal-doc-title">IMPRESSUM</h1>
         </header>
 
-        <div class="legal-doc-content">
+        <!-- Selektor wyboru języka dokumentu -->
+        <div class="legal-doc-lang-selector" role="region" aria-label="Wybór języka dokumentu / Language selection">
+          <div class="legal-doc-lang-label">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span data-i18n="legal_lang_label">Język dokumentu:</span>
+          </div>
+          <div class="legal-doc-lang-pills">
+            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="de" aria-pressed="true">🇩🇪 Deutsch</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="pl" aria-pressed="false">🇵🇱 Polski</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" aria-pressed="false">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- Wersja Niemiecka (DE) - Originaltext -->
+        <div class="legal-doc-content" data-lang-content="de">
           
           <h3>Angaben gemäß § 5 DDG</h3>
           <p>
@@ -263,7 +281,132 @@
           <div class="legal-doc-footer-note">
             <p><strong>Stand: September 2026</strong></p>
           </div>
+        </div>
 
+        <!-- Wersja Polska (PL) - Impressum / Dane identyfikacyjne -->
+        <div class="legal-doc-content" data-lang-content="pl" style="display: none;">
+          <h3>Informacje zgodnie z § 5 DDG (niemieckiej ustawy o usługach cyfrowych)</h3>
+          <p>
+            <strong>Letino</strong><br>
+            <strong>Właściciel: Tomasz Nowak</strong><br>
+            <strong>Schleifweg 5</strong><br>
+            <strong>86641 Rain am Lech</strong><br>
+            <strong>Niemcy</strong>
+          </p>
+
+          <h3>Kontakt</h3>
+          <p><strong>E-mail:</strong> <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a></p>
+
+          <hr>
+
+          <h3>Podatek od towarów i usług (Umsatzsteuer)</h3>
+          <p><strong>Numer identyfikacji podatkowej VAT UE zgodnie z § 27a niemieckiej ustawy o podatku od towarów i usług (UStG): DE366326737</strong></p>
+
+          <hr>
+
+          <h3>Osoba odpowiedzialna za treść</h3>
+          <p>
+            <strong>Tomasz Nowak</strong><br>
+            <strong>Schleifweg 5</strong><br>
+            <strong>86641 Rain am Lech</strong><br>
+            <strong>Niemcy</strong>
+          </p>
+
+          <hr>
+
+          <h3>Odpowiedzialność za treści</h3>
+          <p><strong>Jako usługodawca odpowiadamy zgodnie z powszechnie obowiązującymi przepisami prawa za własne treści na niniejszej stronie internetowej.</strong></p>
+          <p><strong>Nie jesteśmy jednak zobowiązani do monitorowania przekazywanych lub przechowywanych informacji obcych ani do badania okoliczności wskazujących na działalność niezgodną z prawem.</strong></p>
+          <p><strong>Zobowiązania do usunięcia lub zablokowania możliwości korzystania z informacji zgodnie z przepisami prawa pozostają nienaruszone.</strong></p>
+
+          <hr>
+
+          <h3>Odpowiedzialność za linki (odnośniki zewnętrzne)</h3>
+          <p><strong>Nasza strona internetowa zawiera odnośniki do zewnętrznych stron internetowych podmiotów trzecich, w szczególności do platform eBay oraz Instagram.</strong></p>
+          <p><strong>Nie mamy wpływu na treść tych stron. Za treści na stronach, do których prowadzą linki, odpowiada zawsze dany usługodawca lub administrator tych serwisów.</strong></p>
+          <p><strong>W przypadku uzyskania informacji o naruszeniach prawa odpowiednie odnośniki zostaną niezwłocznie usunięte po weryfikacji.</strong></p>
+
+          <hr>
+
+          <h3>Prawo autorskie</h3>
+          <p><strong>Treści i utwory opublikowane na niniejszej stronie podlegają niemieckiemu prawu autorskiemu.</strong></p>
+          <p><strong>Powielanie, modyfikowanie, rozpowszechnianie lub jakiekolwiek inne wykorzystanie wykraczające poza granice prawa autorskiego wymaga uprzedniej pisemnej zgody danego właściciela praw.</strong></p>
+          <p><strong>O ile treści na tej stronie nie zostały sporządzone przez nas, respektowane są prawa autorskie osób trzecich.</strong></p>
+          <p><strong>W przypadku powzięcia podejrzenia o potencjalnym naruszeniu praw autorskich, prosimy o stosowne zawiadomienie.</strong></p>
+
+          <hr>
+
+          <h3>Internetowe rozstrzyganie sporów konsumenckich</h3>
+          <p><strong>Komisja Europejska z dniem 20 lipca 2025 r. zakończyła działanie dawnej platformy internetowego rozstrzygania sporów (platforma ODR). Umieszczenie odpowiedniego linku nie jest w związku z tym dłużej wymagane.</strong></p>
+
+          <hr>
+
+          <div class="legal-doc-footer-note">
+            <p><strong>Stan na: wrzesień 2026</strong></p>
+          </div>
+        </div>
+
+        <!-- Wersja Angielska (EN) - Legal Notice / Impressum -->
+        <div class="legal-doc-content" data-lang-content="en" style="display: none;">
+          <h3>Information pursuant to Section 5 DDG (German Digital Services Act)</h3>
+          <p>
+            <strong>Letino</strong><br>
+            <strong>Owner: Tomasz Nowak</strong><br>
+            <strong>Schleifweg 5</strong><br>
+            <strong>86641 Rain am Lech</strong><br>
+            <strong>Germany</strong>
+          </p>
+
+          <h3>Contact</h3>
+          <p><strong>E-mail:</strong> <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a></p>
+
+          <hr>
+
+          <h3>Value Added Tax (VAT)</h3>
+          <p><strong>VAT Identification Number pursuant to Section 27a of the German VAT Act (UStG): DE366326737</strong></p>
+
+          <hr>
+
+          <h3>Responsible for Content</h3>
+          <p>
+            <strong>Tomasz Nowak</strong><br>
+            <strong>Schleifweg 5</strong><br>
+            <strong>86641 Rain am Lech</strong><br>
+            <strong>Germany</strong>
+          </p>
+
+          <hr>
+
+          <h3>Liability for Content</h3>
+          <p><strong>As a service provider, we are responsible for our own content on this website under applicable statutory legislation.</strong></p>
+          <p><strong>However, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.</strong></p>
+          <p><strong>Statutory obligations to remove or block the use of information remain unaffected.</strong></p>
+
+          <hr>
+
+          <h3>Liability for Links</h3>
+          <p><strong>Our website contains links to external websites of third parties, in particular eBay and Instagram.</strong></p>
+          <p><strong>We have no influence over their contents. The respective provider or operator of the linked sites is always responsible for their contents.</strong></p>
+          <p><strong>Should any infringement become known to us, we will remove such links promptly following review.</strong></p>
+
+          <hr>
+
+          <h3>Copyright</h3>
+          <p><strong>The content and works published on this website are subject to German copyright law.</strong></p>
+          <p><strong>Duplication, editing, distribution, or any form of utilization beyond the limits of copyright law requires the prior written consent of the respective rights holder.</strong></p>
+          <p><strong>Insofar as the content on this website was not created by the operator, the copyrights of third parties are respected.</strong></p>
+          <p><strong>Should you nevertheless notice any copyright infringement, please notify us accordingly.</strong></p>
+
+          <hr>
+
+          <h3>Online Dispute Resolution</h3>
+          <p><strong>The European Commission discontinued the former Online Dispute Resolution platform (ODR platform) on July 20, 2025. A corresponding link is therefore no longer required.</strong></p>
+
+          <hr>
+
+          <div class="legal-doc-footer-note">
+            <p><strong>As of: September 2026</strong></p>
+          </div>
         </div>
       </article>
 
@@ -357,7 +500,7 @@
       <!-- Linki do informacji prawnych i Copyright -->
       <div class="footer-bottom-bar">
         <div class="copyright">
-          &copy; <span id="year">2026</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
+          &copy; <span id="year">2023</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
         </div>
 
         <div class="legal-links">

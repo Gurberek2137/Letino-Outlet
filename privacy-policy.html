@@ -198,12 +198,30 @@
       <article class="legal-doc-card">
         
         <header class="legal-doc-header">
-          <span class="legal-doc-badge">Dokument prawny</span>
+          <span class="legal-doc-badge">Dokument prawny / Legal Document</span>
           <h1 class="legal-doc-title">Polityka prywatności</h1>
           <p class="legal-doc-meta">Stan na: wrzesień 2026</p>
         </header>
 
-        <div class="legal-doc-content">
+        <!-- Selektor wyboru języka dokumentu -->
+        <div class="legal-doc-lang-selector" role="region" aria-label="Wybór języka dokumentu / Language selection">
+          <div class="legal-doc-lang-label">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span data-i18n="legal_lang_label">Język dokumentu:</span>
+          </div>
+          <div class="legal-doc-lang-pills">
+            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="pl" aria-pressed="true">🇵🇱 Polski</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="de" aria-pressed="false">🇩🇪 Deutsch</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" aria-pressed="false">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- Wersja Polska (PL) -->
+        <div class="legal-doc-content" data-lang-content="pl">
           
           <h2>1. Administrator danych</h2>
           <p>Administratorem odpowiedzialnym za przetwarzanie danych osobowych na tej stronie internetowej jest:</p>
@@ -402,7 +420,375 @@
           <p>Zastrzegamy sobie prawo do dostosowania niniejszej polityki prywatności, jeżeli będzie to konieczne ze względu na zmiany prawne, rozwój technologiczny lub zmiany naszej strony internetowej bądź naszych usług.</p>
           <p>Obowiązuje zawsze aktualna wersja opublikowana na naszej stronie internetowej.</p>
           <p class="legal-doc-footer-note">Stan na: wrzesień 2026</p>
+        </div>
 
+        <!-- Wersja Niemiecka (DE) - Datenschutzerklärung -->
+        <div class="legal-doc-content" data-lang-content="de" style="display: none;">
+          <h2>1. Verantwortlicher</h2>
+          <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Inhaber: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Deutschland<br><br>
+            E-Mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+
+          <h2>2. Allgemeine Hinweise</h2>
+          <p>Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen.</p>
+          <p>Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG).</p>
+          <p>Personenbezogene Daten sind alle Daten, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen, wie beispielsweise Name, E-Mail-Adresse, IP-Adresse oder Online-Kennungen.</p>
+          <p>Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung unserer Website, zur Kommunikation mit Ihnen, zur Erfüllung von Verträgen oder aufgrund rechtlicher Verpflichtungen erforderlich ist.</p>
+
+          <h2>3. Hosting durch IONOS</h2>
+          <p>Unsere Website wird bei IONOS SE gehostet.</p>
+          <p>Dienstanbieter ist:</p>
+          <div class="legal-address-box">
+            <strong>IONOS SE</strong><br>
+            Elgendorfer Straße 57<br>
+            56410 Montabaur<br>
+            Deutschland
+          </div>
+          <p>Beim Aufruf unserer Website können durch den Hosting-Anbieter automatisch technische Informationen verarbeitet werden. Hierzu gehören insbesondere:</p>
+          <ul>
+            <li>IP-Adresse bzw. anonymisierte IP-Adresse</li>
+            <li>Datum und Uhrzeit des Zugriffs</li>
+            <li>aufgerufene Seiten</li>
+            <li>Referrer-URL (die zuvor besuchte Seite)</li>
+            <li>Browsertyp und Browserversion</li>
+            <li>Betriebssystem</li>
+            <li>verwendetes Endgerät</li>
+            <li>technische Zugriffsdaten</li>
+          </ul>
+          <p>Die Verarbeitung dieser Daten erfolgt vor allem zur technischen Bereitstellung der Website, zur Gewährleistung der Sicherheit und Stabilität sowie zur Erkennung technischer Störungen.</p>
+          <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der technisch fehlerfreien und sicheren Bereitstellung unserer Website.</p>
+          <p>Für die Datenverarbeitung im Rahmen des Hostings gelten die Datenschutzbestimmungen von IONOS.</p>
+
+          <h2>4. Besuch unserer Website</h2>
+          <p>Beim Besuch unserer Website werden technisch notwendige Daten verarbeitet, um die Website auf Ihrem Endgerät bereitzustellen.</p>
+          <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+          <p>Unser berechtigtes Interesse liegt im sicheren, stabilen und ordnungsgemäßen Betrieb unserer Website.</p>
+
+          <h2>5. Google Analytics</h2>
+          <p>Diese Website nutzt Google Analytics, einen Webanalysedienst der:</p>
+          <div class="legal-address-box">
+            <strong>Google Ireland Limited</strong><br>
+            Gordon House<br>
+            Barrow Street<br>
+            Dublin 4<br>
+            Irland
+          </div>
+          <p>Google Analytics ermöglicht es uns, die Nutzung unserer Website statistisch zu analysieren und unser Webangebot sowie unser Sortiment zu optimieren.</p>
+          <p>Hierbei können unter anderem folgende Informationen verarbeitet werden:</p>
+          <ul>
+            <li>Seitenaufrufe</li>
+            <li>Interaktionen auf der Website</li>
+            <li>technische Informationen zum verwendeten Endgerät</li>
+            <li>Browserinformationen</li>
+            <li>Herkunftsquelle des Besuchs</li>
+            <li>ungefährer Standort</li>
+            <li>weitere Nutzungsdaten</li>
+          </ul>
+
+          <h3>Einwilligung</h3>
+          <p>Google Analytics wird nur nach vorheriger Erteilung Ihrer ausdrücklichen Einwilligung aktiviert, sofern eine solche gesetzlich vorgeschrieben ist.</p>
+          <p>Die Einwilligung wird über unseren Cookie-Banner eingeholt.</p>
+          <p>Die Rechtsgrundlage der Verarbeitung ist Art. 6 Abs. 1 lit. a DSGVO.</p>
+          <p>Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über die Cookie-Einstellungen widerrufen oder anpassen.</p>
+          <p>Google Analytics nutzt den Google Consent Mode, sofern dieser technisch auf unserer Website implementiert ist. Dadurch kann die Datenverarbeitung an Ihre getroffene Einwilligungsentscheidung angepasst werden.</p>
+          <p>Weitere Informationen zur Datenverarbeitung durch Google finden Sie in der Datenschutzerklärung von Google.</p>
+
+          <h2>6. Cookies und Einwilligungsmanagement</h2>
+          <p>Unsere Website verwendet technisch notwendige Cookies sowie nach Ihrer Einwilligung gegebenenfalls weitere Cookies und ähnliche Technologien.</p>
+          <p>Technisch notwendige Cookies sind für die einwandfreie Funktion der Website erforderlich.</p>
+          <p>Für nicht notwendige Cookies, insbesondere solche für Analysezwecke, holen wir vor deren Einsatz Ihre Einwilligung ein, soweit dies gesetzlich erforderlich ist.</p>
+          <p>Beim ersten Besuch unserer Website können Sie Ihre Auswahl über unseren Cookie-Banner treffen.</p>
+          <p>Sie können insbesondere wählen:</p>
+          <p><strong>Alle akzeptieren</strong></p>
+          <p>oder</p>
+          <p><strong>Nur notwendige Cookies</strong></p>
+          <p>Über die Cookie-Einstellungen können Sie Ihre Auswahl jederzeit ändern oder Ihre Einwilligung widerrufen.</p>
+
+          <h2>7. Kontaktaufnahme per E-Mail</h2>
+          <p>Wenn Sie per E-Mail mit uns in Kontakt treten, verarbeiten wir die von Ihnen übermittelten personenbezogenen Daten.</p>
+          <p>Hierzu können insbesondere gehören:</p>
+          <ul>
+            <li>Vor- und Nachname</li>
+            <li>E-Mail-Adresse</li>
+            <li>Inhalt der Nachricht</li>
+            <li>weitere freiwillig übermittelte Angaben</li>
+          </ul>
+          <p>Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage sowie zur Kommunikation mit Ihnen.</p>
+          <p>Sofern Ihre Anfrage mit einem Vertrag oder vorvertraglichen Maßnahmen zusammenhängt, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.</p>
+          <p>In den übrigen Fällen erfolgt die Verarbeitung auf Grundlage unseres berechtigten Interesses gemäß Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+          <h2>8. Bestellungen und Kundenkommunikation</h2>
+          <p>Wenn Sie ein Produkt bei Letino erwerben oder uns im Zusammenhang mit einem Kauf kontaktieren, können die zur Vertragsabwicklung erforderlichen personenbezogenen Daten verarbeitet werden.</p>
+          <p>Hierzu können insbesondere gehören:</p>
+          <ul>
+            <li>Vor- und Nachname</li>
+            <li>Rechnungsadresse</li>
+            <li>Lieferadresse</li>
+            <li>E-Mail-Adresse</li>
+            <li>Telefonnummer, sofern erforderlich</li>
+            <li>Bestellangaben</li>
+            <li>Zahlungsinformationen</li>
+            <li>Versandinformationen</li>
+          </ul>
+          <p>Die Daten werden vorrangig zur Bearbeitung und Abwicklung von Bestellungen, zur Kundenkommunikation sowie zur Erfüllung rechtlicher Pflichten verarbeitet.</p>
+          <p>Rechtsgrundlagen sind insbesondere Art. 6 Abs. 1 lit. b DSGVO sowie Art. 6 Abs. 1 lit. c DSGVO.</p>
+
+          <h2>9. Instagram</h2>
+          <p>Auf unserer Website befinden sich Links zu unserem Instagram-Profil.</p>
+          <p>Unser Instagram-Profil ist unter dem Namen @letino.outlet abrufbar.</p>
+          <p>Nach Anklicken des entsprechenden Links verlassen Sie unsere Website und werden zu Instagram weitergeleitet.</p>
+          <p>Instagram wird von Unternehmen der Meta Platforms betrieben.</p>
+          <p>Wir haben keinen vollständigen Einfluss auf die Datenverarbeitung durch Instagram.</p>
+          <p>Für die Datenverarbeitung auf Instagram gelten die Datenschutzrichtlinien von Meta.</p>
+
+          <h2>10. eBay</h2>
+          <p>Auf unserer Website befinden sich Links zu unseren Angeboten oder unserem Verkäuferprofil auf eBay.</p>
+          <p>Nach Anklicken des entsprechenden Links verlassen Sie unsere Website und werden zu eBay weitergeleitet.</p>
+          <p>Für die Datenverarbeitung auf der Plattform eBay ist eBay verantwortlich.</p>
+          <p>Wir haben keinen vollständigen Einfluss auf die Datenverarbeitung durch eBay.</p>
+          <p>Es gelten die Datenschutzbestimmungen von eBay.</p>
+
+          <h2>11. Externe Links</h2>
+          <p>Unsere Website kann Links zu externen Websites und Plattformen enthalten, insbesondere zu Instagram und eBay.</p>
+          <p>Beim Anklicken eines solchen Links verlassen Sie unsere Website.</p>
+          <p>Für die Datenverarbeitung auf den verlinkten Websites gelten die jeweiligen Datenschutzbestimmungen der Betreiber jener Websites.</p>
+
+          <h2>12. Weitergabe von personenbezogenen Daten</h2>
+          <p>Eine Weitergabe personenbezogener Daten an Dritte erfolgt grundsätzlich nur dann, wenn:</p>
+          <ul>
+            <li>dies für die Vertragserfüllung erforderlich ist,</li>
+            <li>eine gesetzliche Verpflichtung besteht,</li>
+            <li>Sie hierzu Ihre ausdrückliche Einwilligung erteilt haben, oder</li>
+            <li>die Übermittlung auf Grundlage eines berechtigten Interesses rechtlich zulässig ist.</li>
+          </ul>
+          <p>Wir verkaufen keine personenbezogenen Daten und vermieten diese nicht zu Werbezwecken an Dritte.</p>
+
+          <h2>13. Datenübermittlung in Drittstaaten</h2>
+          <p>Bei der Nutzung bestimmter Dienste, insbesondere Google Analytics, kann eine Verarbeitung personenbezogener Daten auch außerhalb der Europäischen Union bzw. des Europäischen Wirtschaftsraums stattfinden.</p>
+          <p>Sofern eine solche Datenübermittlung erfolgt, werden die in den Datenschutzvorschriften vorgesehenen Garantien und rechtlichen Mechanismen beachtet.</p>
+          <p>Weitere Informationen hierzu finden Sie in den Datenschutzhinweisen des jeweiligen Dienstanbieters.</p>
+
+          <h2>14. Speicherdauer</h2>
+          <p>Wir speichern personenbezogene Daten nur so lange, wie dies zur Erreichung des jeweiligen Zwecks erforderlich ist.</p>
+          <p>Darüber hinaus können gesetzliche Aufbewahrungsfristen bestehen.</p>
+          <p>Nach Ablauf der Fristen werden die Daten gelöscht, sofern keine andere Rechtsgrundlage für die weitere Speicherung besteht.</p>
+
+          <h2>15. Ihre Rechte</h2>
+          <p>Nach den geltenden gesetzlichen Bestimmungen haben Sie insbesondere folgende Rechte:</p>
+
+          <h3>Auskunftsrecht</h3>
+          <p>Sie haben das Recht, Auskunft darüber zu verlangen, ob und welche personenbezogenen Daten wir über Sie verarbeiten.</p>
+
+          <h3>Recht auf Berichtigung</h3>
+          <p>Sie können die Berichtigung unrichtiger oder die Vervollständigung unvollständiger personenbezogener Daten verlangen.</p>
+
+          <h3>Recht auf Löschung</h3>
+          <p>In gesetzlich geregelten Fällen haben Sie das Recht, die Löschung Ihrer personenbezogenen Daten zu verlangen.</p>
+
+          <h3>Recht auf Einschränkung der Verarbeitung</h3>
+          <p>In bestimmten Fällen können Sie die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten verlangen.</p>
+
+          <h3>Widerspruchsrecht</h3>
+          <p>In bestimmten Fällen können Sie der Verarbeitung Ihrer personenbezogenen Daten widersprechen.</p>
+
+          <h3>Recht auf Datenübertragbarkeit</h3>
+          <p>In bestimmten Fällen haben Sie das Recht, Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.</p>
+
+          <h3>Recht auf Widerruf der Einwilligung</h3>
+          <p>Beruht die Verarbeitung auf Ihrer Einwilligung, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen.</p>
+          <p>Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.</p>
+
+          <h2>16. Beschwerderecht bei der Aufsichtsbehörde</h2>
+          <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt.</p>
+          <p>Insbesondere können Sie sich an die für den Sitz unseres Unternehmens zuständige Aufsichtsbehörde wenden.</p>
+
+          <h2>17. Datensicherheit</h2>
+          <p>Wir treffen angemessene technische und organisatorische Maßnahmen, um Ihre personenbezogenen Daten vor Verlust, Missbrauch, unbefugtem Zugriff, Veränderung oder Zerstörung zu schützen.</p>
+          <p>Unsere Sicherheitsmaßnahmen werden regelmäßig überprüft und an den technologischen Fortschritt angepasst.</p>
+
+          <h2>18. SSL/TLS-Verschlüsselung</h2>
+          <p>Aus Sicherheitsgründen nutzt unsere Website eine SSL/TLS-Verschlüsselung.</p>
+          <p>Eine verschlüsselte Verbindung erkennen Sie in der Regel an dem Präfix „https://“ in der Adresszeile des Browsers sowie am Schloss-Symbol.</p>
+          <p>Durch die Verschlüsselung sind übermittelte Daten vor dem Zugriff Dritter geschützt.</p>
+
+          <h2>19. Änderungen dieser Datenschutzerklärung</h2>
+          <p>Wir behalten uns das Recht vor, diese Datenschutzerklärung anzupassen, sofern dies aufgrund rechtlicher Änderungen, technologischer Entwicklungen oder Änderungen unseres Angebots erforderlich wird.</p>
+          <p>Es gilt jeweils die auf unserer Website veröffentlichte aktuelle Fassung.</p>
+          <p class="legal-doc-footer-note">Stand: September 2026</p>
+        </div>
+
+        <!-- Wersja Angielska (EN) - Privacy Policy -->
+        <div class="legal-doc-content" data-lang-content="en" style="display: none;">
+          <h2>1. Data Controller</h2>
+          <p>The controller responsible for data processing on this website is:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Owner: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Germany<br><br>
+            E-mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+
+          <h2>2. General Information</h2>
+          <p>The protection of your personal data is important to us.</p>
+          <p>We process personal data strictly in accordance with applicable data protection legislation, in particular the General Data Protection Regulation (GDPR) and the German Federal Data Protection Act (BDSG).</p>
+          <p>Personal data means any information relating to an identified or identifiable natural person, such as name, e-mail address, IP address, or online identifiers.</p>
+          <p>We only process personal data to the extent necessary to provide our website, communicate with you, fulfill orders, or comply with legal obligations.</p>
+
+          <h2>3. Hosting by IONOS</h2>
+          <p>Our website is hosted by IONOS SE.</p>
+          <p>The provider is:</p>
+          <div class="legal-address-box">
+            <strong>IONOS SE</strong><br>
+            Elgendorfer Straße 57<br>
+            56410 Montabaur<br>
+            Germany
+          </div>
+          <p>When you visit our website, technical information may be automatically processed by the hosting provider. This may include in particular:</p>
+          <ul>
+            <li>IP address or anonymized IP address</li>
+            <li>Date and time of access</li>
+            <li>Pages visited</li>
+            <li>Referrer URL (previously visited page)</li>
+            <li>Browser type and version</li>
+            <li>Operating system</li>
+            <li>Device used</li>
+            <li>Technical access logs</li>
+          </ul>
+          <p>These data are processed primarily for the technical provision of the website, to ensure stability and security, and to detect technical faults.</p>
+          <p>The processing is based on Art. 6(1)(f) GDPR. Our legitimate interest lies in the technically faultless and secure operation of our website.</p>
+          <p>The data privacy provisions of IONOS apply to hosting data processing.</p>
+
+          <h2>4. Visiting our Website</h2>
+          <p>When you access our website, data technically necessary to deliver the site to your device are processed.</p>
+          <p>The processing of these data is based on Art. 6(1)(f) GDPR.</p>
+          <p>Our legitimate interest is the secure, stable, and proper functioning of our website.</p>
+
+          <h2>5. Google Analytics</h2>
+          <p>This website uses Google Analytics, a web analysis service provided by:</p>
+          <div class="legal-address-box">
+            <strong>Google Ireland Limited</strong><br>
+            Gordon House<br>
+            Barrow Street<br>
+            Dublin 4<br>
+            Ireland
+          </div>
+          <p>Google Analytics enables us to statistically analyze the use of our website to improve our online presence and product offerings.</p>
+          <p>During this process, the following data may be processed:</p>
+          <ul>
+            <li>Page views</li>
+            <li>Interactions on the website</li>
+            <li>Technical device details</li>
+            <li>Browser specifications</li>
+            <li>Source of referral</li>
+            <li>Approximate geographic location</li>
+            <li>Other usage telemetry</li>
+          </ul>
+
+          <h3>Consent</h3>
+          <p>Google Analytics is only activated upon receiving your prior explicit consent, where required by law.</p>
+          <p>Consent is obtained via our cookie banner.</p>
+          <p>The legal basis is Art. 6(1)(a) GDPR.</p>
+          <p>You may withdraw or modify your consent at any time with future effect via the cookie settings.</p>
+          <p>Google Analytics supports Google Consent Mode where implemented, adapting data handling to your preferences.</p>
+          <p>For more information, please consult Google's Privacy Policy.</p>
+
+          <h2>6. Cookies and Consent Management</h2>
+          <p>Our website utilizes technically necessary cookies and, subject to your consent, optional cookies and similar technologies.</p>
+          <p>Technically essential cookies are required for proper operation.</p>
+          <p>For non-essential cookies, notably analytics, we obtain your consent where required by law.</p>
+          <p>You can choose your preferences via our cookie banner on your initial visit:</p>
+          <p><strong>Accept all</strong></p>
+          <p>or</p>
+          <p><strong>Essential cookies only</strong></p>
+          <p>You can revise your choices at any time via the cookie settings.</p>
+
+          <h2>7. Contact by E-mail</h2>
+          <p>If you reach out to us via e-mail, we process the personal details you submit.</p>
+          <p>This may include:</p>
+          <ul>
+            <li>First and last name</li>
+            <li>E-mail address</li>
+            <li>Message content</li>
+            <li>Other voluntarily provided information</li>
+          </ul>
+          <p>Processing serves the purpose of handling your inquiry and customer support.</p>
+          <p>Where related to contractual performance or pre-contractual steps, the legal basis is Art. 6(1)(b) GDPR; otherwise, it is based on our legitimate interest pursuant to Art. 6(1)(f) GDPR.</p>
+
+          <h2>8. Orders and Customer Communication</h2>
+          <p>When purchasing from Letino or inquiring about a purchase, personal data required for transaction fulfillment are processed.</p>
+          <p>This may include:</p>
+          <ul>
+            <li>First and last name</li>
+            <li>Billing address</li>
+            <li>Shipping address</li>
+            <li>E-mail address</li>
+            <li>Phone number, if required</li>
+            <li>Order details</li>
+            <li>Payment information</li>
+            <li>Shipping details</li>
+          </ul>
+          <p>Data are processed for order handling, customer care, and legal compliance.</p>
+          <p>Legal bases are Art. 6(1)(b) and Art. 6(1)(c) GDPR.</p>
+
+          <h2>9. Instagram</h2>
+          <p>Our website features links to our Instagram profile (@letino.outlet).</p>
+          <p>Clicking the link navigates away from our site to Instagram, operated by Meta Platforms.</p>
+          <p>Meta's privacy policy governs data handling on Instagram.</p>
+
+          <h2>10. eBay</h2>
+          <p>We feature links to our offers or seller profile on eBay.</p>
+          <p>eBay is responsible for data processing on its marketplace platform under eBay's privacy notice.</p>
+
+          <h2>11. External Links</h2>
+          <p>Our website may link to third-party sites. Once clicked, external operators' privacy terms apply.</p>
+
+          <h2>12. Disclosure of Personal Data</h2>
+          <p>Data are only disclosed to third parties if necessary for contract performance, legally mandated, explicitly consented to, or justified by legitimate interest.</p>
+          <p>We never sell or rent your personal data to third parties for advertising purposes.</p>
+
+          <h2>13. Transfer to Third Countries</h2>
+          <p>Certain tools, notably Google Analytics, may process data outside the EU/EEA. Applicable statutory safeguards and mechanisms are observed.</p>
+
+          <h2>14. Storage Period</h2>
+          <p>Personal data are retained only as long as necessary for their specific purpose and in compliance with statutory retention periods.</p>
+
+          <h2>15. Your Rights</h2>
+          <p>Under applicable law, you have the following rights:</p>
+          <h3>Right of Access</h3>
+          <p>You have the right to request confirmation as to whether personal data concerning you are processed and access to such data.</p>
+          <h3>Right to Rectification</h3>
+          <p>You may request correction of inaccurate data or completion of incomplete information.</p>
+          <h3>Right to Erasure</h3>
+          <p>You may request deletion of your personal data under statutory conditions.</p>
+          <h3>Right to Restriction of Processing</h3>
+          <p>You may request restriction of data processing in legally specified circumstances.</p>
+          <h3>Right to Object</h3>
+          <p>You may object to processing where applicable by law.</p>
+          <h3>Right to Data Portability</h3>
+          <p>You have the right to receive your data in a structured, commonly used, and machine-readable format.</p>
+          <h3>Right to Withdraw Consent</h3>
+          <p>Consent can be withdrawn at any time with future effect without affecting prior lawful processing.</p>
+
+          <h2>16. Right to Lodge a Complaint with a Supervisory Authority</h2>
+          <p>You have the right to file a complaint with a competent data protection supervisory authority.</p>
+
+          <h2>17. Data Security</h2>
+          <p>We maintain appropriate technical and organizational measures to safeguard your data against loss, unauthorized access, or alteration.</p>
+
+          <h2>18. SSL/TLS Encryption</h2>
+          <p>Our website uses SSL/TLS encryption for enhanced security (identifiable by "https://" and padlock icon).</p>
+
+          <h2>19. Changes to this Privacy Policy</h2>
+          <p>We reserve the right to update this policy to reflect legal or technical developments. The current version published on our website shall apply.</p>
+          <p class="legal-doc-footer-note">As of: September 2026</p>
         </div>
 
       </article>
@@ -497,7 +883,7 @@
       <!-- Linki do informacji prawnych i Copyright -->
       <div class="footer-bottom-bar">
         <div class="copyright">
-          &copy; <span id="year">2026</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
+          &copy; <span id="year">2023</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
         </div>
 
         <div class="legal-links">

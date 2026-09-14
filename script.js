@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Opcjonalny token Meta Graph API (User Access Token) do automatycznego ładowania postów
   const INSTAGRAM_ACCESS_TOKEN = '';
 
-  // Aktualizacja roku w stopce
+  // Aktualizacja roku w stopce (2023 Letino Outlet)
   const yearSpan = document.getElementById('year');
   if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+    yearSpan.textContent = '2023';
   }
 
   // =========================================================================
@@ -233,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_privacy: 'Polityka Prywatności',
       footer_terms: 'Regulamin Serwisu',
       footer_impressum: 'Impressum',
+      legal_lang_label: 'Język dokumentu:',
       copyright_text: 'Letino Outlet. Wszelkie prawa zastrzeżone.',
       footer_tag_text: 'Zwroty &bull; Nadwyżki &bull; Okazje',
       footer_ig_label: 'Instagram: @letino.outlet',
@@ -508,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_privacy: 'Privacy Policy',
       footer_terms: 'Terms of Service',
       footer_impressum: 'Impressum',
+      legal_lang_label: 'Document language:',
       copyright_text: 'Letino Outlet. All rights reserved.',
       footer_tag_text: 'Returns &bull; Overstock &bull; Deals',
       footer_ig_label: 'Instagram: @letino.outlet',
@@ -783,6 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_privacy: 'Datenschutzerklärung',
       footer_terms: 'Nutzungsbedingungen',
       footer_impressum: 'Impressum',
+      legal_lang_label: 'Dokumentsprache:',
       copyright_text: 'Letino Outlet. Alle Rechte vorbehalten.',
       footer_tag_text: 'Retouren &bull; Restposten &bull; Schnäppchen',
       footer_ig_label: 'Instagram: @letino.outlet',
@@ -954,6 +957,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLangGlideTo(activeTile);
       }
 
+      // Aktualizacja bloków zawartości językowej na podstronach prawnych
+      document.querySelectorAll('[data-lang-content]').forEach(block => {
+        const blockLang = block.getAttribute('data-lang-content');
+        block.style.display = (blockLang === selectedLang) ? 'block' : 'none';
+      });
+
+      // Aktualizacja aktywnych pigułek językowych w dokumencie
+      document.querySelectorAll('.legal-lang-pill-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('data-legal-lang');
+        const isBtnActive = btnLang === selectedLang;
+        btn.classList.toggle('active', isBtnActive);
+        btn.setAttribute('aria-pressed', isBtnActive ? 'true' : 'false');
+      });
+
       try {
         localStorage.setItem('letino_lang', selectedLang);
       } catch (e) {}
@@ -1026,6 +1043,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activeTile) updateLangGlideTo(activeTile);
     });
   }
+
+  // Obsługa pigułek wyboru języka w dokumentach prawnych
+  document.querySelectorAll('.legal-lang-pill-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetLang = btn.getAttribute('data-legal-lang');
+      if (targetLang) {
+        setLanguage(targetLang);
+      }
+    });
+  });
 
   window.addEventListener('resize', () => {
     const activeTile = document.querySelector('.lang-tile.active');

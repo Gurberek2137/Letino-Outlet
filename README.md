@@ -18,7 +18,7 @@ Active development.
 
 ## Copyright
 
-© 2026 Letino Outlet
+© 2023 Letino Outlet
 
 This project was designed and developed by Dawid Cudak.
 

@@ -198,13 +198,31 @@
       <article class="legal-doc-card">
         
         <header class="legal-doc-header">
-          <span class="legal-doc-badge">Dokument prawny</span>
+          <span class="legal-doc-badge">Dokument prawny / Legal Document</span>
           <h1 class="legal-doc-title">Regulamin</h1>
           <p style="font-size: 1.15rem; color: var(--text-secondary); margin: -4px 0 8px; font-weight: 500;">dla Letino</p>
           <p class="legal-doc-meta">Stan na: wrzesień 2026</p>
         </header>
 
-        <div class="legal-doc-content">
+        <!-- Selektor wyboru języka dokumentu -->
+        <div class="legal-doc-lang-selector" role="region" aria-label="Wybór języka dokumentu / Language selection">
+          <div class="legal-doc-lang-label">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span data-i18n="legal_lang_label">Język dokumentu:</span>
+          </div>
+          <div class="legal-doc-lang-pills">
+            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="pl" aria-pressed="true">🇵🇱 Polski</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="de" aria-pressed="false">🇩🇪 Deutsch</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" aria-pressed="false">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- Wersja Polska (PL) -->
+        <div class="legal-doc-content" data-lang-content="pl">
           
           <h2>§ 1 Zakres obowiązywania</h2>
           <p>Niniejszy Regulamin ma zastosowanie do wszystkich umów zawieranych pomiędzy:</p>
@@ -345,7 +363,292 @@
           <div class="legal-doc-footer-note">
             <p>Stan na: wrzesień 2026</p>
           </div>
+        </div>
 
+        <!-- Wersja Niemiecka (DE) - Allgemeine Geschäftsbedingungen (AGB) -->
+        <div class="legal-doc-content" data-lang-content="de" style="display: none;">
+          <h2>§ 1 Geltungsbereich</h2>
+          <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, die geschlossen werden zwischen:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Inhaber: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Deutschland<br><br>
+            E-Mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+          <p>und unseren Kunden über den Verkauf von Waren.</p>
+          <p>Unser Angebot richtet sich sowohl an Verbraucher als auch an Unternehmer, sofern im jeweiligen Angebot nicht ausdrücklich etwas anderes angegeben ist.</p>
+
+          <h2>§ 2 Angebot und Vertragsschluss</h2>
+          <p>Die Darstellung unserer Produkte auf der Website stellt grundsätzlich kein rechtlich bindendes Angebot dar, sondern eine Aufforderung zur Abgabe einer Bestellung (Invitatio ad offerendum).</p>
+          <p>Ein Kaufvertrag kommt zustande, sobald die Bestellung des Kunden von uns bestätigt oder die Ware versandt wird.</p>
+          <p>Beim Verkauf über externe Verkaufsplattformen, insbesondere eBay, gelten ergänzend die entsprechenden Bedingungen und Richtlinien der jeweiligen Verkaufsplattform.</p>
+
+          <h2>§ 3 Zustand der Waren</h2>
+          <p>Bei Letino werden unter anderem Waren angeboten, die stammen aus:</p>
+          <ul>
+            <li>Kundenretouren</li>
+            <li>Überbeständen</li>
+            <li>Lagerüberhängen</li>
+            <li>Ausstellungsstücken / Vorführware</li>
+            <li>nicht abgeholten Sendungen</li>
+            <li>Restposten / Sonderposten</li>
+          </ul>
+          <p>Die Waren können sich daher in unterschiedlichem Zustand befinden.</p>
+          <p>Der jeweilige Zustand eines Artikels ist in der entsprechenden Artikelbeschreibung angegeben.</p>
+          <p>Je nach Artikel kann die Ware beispielsweise sein:</p>
+          <ul>
+            <li>neu und unbenutzt,</li>
+            <li>originalverpackt,</li>
+            <li>geöffnet,</li>
+            <li>geprüft,</li>
+            <li>gebraucht,</li>
+            <li>mit sichtbaren Gebrauchsspuren,</li>
+            <li>mit beschädigter oder fehlender Originalverpackung,</li>
+            <li>mit fehlendem Zubehör</li>
+          </ul>
+          <p>Maßgeblich für den Zustand ist stets die individuelle Produktbeschreibung sowie die beigefügten Produktfotos des jeweiligen Artikels.</p>
+
+          <h2>§ 4 ABC-Waren</h2>
+          <p>Bei Produkten, die als ABC-Ware gekennzeichnet sind, können unterschiedliche optische oder technische Zustände vorliegen.</p>
+          <p>Die Klassifizierung dient der transparenten Beschreibung des Gesamtzustands der Ware.</p>
+          
+          <h3>A-Ware</h3>
+          <p>Sehr guter oder nahezu neuwertiger Zustand. Die Verpackung kann geöffnet oder leicht beschädigt sein.</p>
+
+          <h3>B-Ware</h3>
+          <p>Die Ware kann leichte bis deutliche Gebrauchsspuren, eine beschädigte Verpackung oder kleinere optische Mängel aufweisen.</p>
+
+          <h3>C-Ware</h3>
+          <p>Die Ware kann deutliche Gebrauchsspuren, Beschädigungen, fehlendes Zubehör oder technische Einschränkungen aufweisen.</p>
+
+          <p>Soweit besondere Mängel oder Einschränkungen bekannt sind, werden diese in der jeweiligen Artikelbeschreibung gesondert aufgeführt.</p>
+
+          <h2>§ 5 Preise</h2>
+          <p>Alle angegebenen Preise verstehen sich in Euro.</p>
+          <p>Soweit gesetzlich vorgeschrieben, enthalten die angegebenen Preise die gesetzliche Mehrwertsteuer.</p>
+          <p>Zusätzlich können Versandkosten anfallen. Die entsprechenden Versandkosten werden im Angebot oder während des Bestellvorgangs gesondert ausgewiesen.</p>
+
+          <h2>§ 6 Zahlung</h2>
+          <p>Die verfügbaren Zahlungsmethoden werden dem Kunden im jeweiligen Bestellprozess oder auf der jeweiligen Verkaufsplattform angezeigt.</p>
+          <p>Die Zahlung ist gemäß den dort genannten Zahlungsbedingungen zu leisten.</p>
+
+          <h2>§ 7 Lieferung</h2>
+          <p>Die Lieferung erfolgt an die vom Kunden angegebene Lieferadresse.</p>
+          <p>Die voraussichtliche Lieferzeit ist im jeweiligen Angebot angegeben.</p>
+          <p>Sollte ein Artikel ausnahmsweise nicht verfügbar sein, informieren wir den Kunden schnellstmöglich.</p>
+
+          <h2>§ 8 Eigentumsvorbehalt</h2>
+          <p>Die Ware bleibt bis zur vollständigen Bezahlung das Eigentum von Letino.</p>
+
+          <h2>§ 9 Widerrufsrecht und Rückgabe</h2>
+          <p>Verbrauchern steht bei Fernabsatzverträgen ein gesetzliches 14-tägiges Widerrufsrecht zu.</p>
+          <p>Die Einzelheiten zum Widerrufsrecht und zur Rückgabe der Ware sind in unserer Widerrufsbelehrung geregelt.</p>
+          <p>Die gesetzlichen Mängelansprüche bleiben hiervon unberührt.</p>
+          <p>Die Beschreibung des jeweiligen Artikels einschließlich Angaben zu Zustand, eventuellen Gebrauchsspuren, Mängeln oder Zubehör ist Bestandteil des jeweiligen Angebots.</p>
+
+          <h2 style="margin-top: 48px; border-top: 2px solid var(--border-gold-subtle); padding-top: 28px;">Widerrufsbelehrung</h2>
+
+          <h3>Widerrufsrecht</h3>
+          <p>Sofern Sie Verbraucher sind, haben Sie das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+          <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
+          <p>Bei getrennter Lieferung mehrerer Waren im Rahmen einer einheitlichen Bestellung beginnt die Frist mit Erhalt der letzten Ware.</p>
+          <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Inhaber: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Deutschland<br><br>
+            E-Mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+          <p>mittels einer eindeutigen Erklärung (z. B. per E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.</p>
+          <p>Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+          <p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+
+          <h3>Widerrufsfolgen</h3>
+          <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.</p>
+          <p>Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart.</p>
+          <p>Wir können die Rückzahlung verweigern, bis wir die Waren wieder zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie die Waren zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
+          <p>Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrags unterrichten, an uns zurückzusenden oder zu übergeben.</p>
+          <p>Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der Frist von vierzehn Tagen absenden.</p>
+          <p>Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
+          <p>Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwendigen Umgang mit ihnen zurückzuführen ist.</p>
+
+          <h3>Muster-Widerrufsformular</h3>
+          <p>Wenn Sie den Vertrag widerrufen wollen, können Sie dieses Formular ausfüllen und an uns senden.</p>
+          <div class="legal-form-box">
+            <p style="margin-bottom: 12px;"><strong>An:</strong><br>
+            Letino<br>
+            Inhaber: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Deutschland<br>
+            E-Mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a></p>
+
+            <p style="margin-bottom: 12px;">Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren:</p>
+            <p style="margin-bottom: 6px;">Artikel:</p>
+            <p style="margin-bottom: 6px;">Bestellnummer:</p>
+            <p style="margin-bottom: 6px;">Bestellt am:</p>
+            <p style="margin-bottom: 6px;">Erhalten am:</p>
+            <p style="margin-bottom: 6px;">Name des/der Verbraucher(s):</p>
+            <p style="margin-bottom: 6px;">Anschrift des/der Verbraucher(s):</p>
+            <p style="margin-bottom: 6px;">Datum:</p>
+            <p style="margin-bottom: 0;">Unterschrift des/der Verbraucher(s):<br>
+            <small style="color: var(--text-muted);">(nur bei Mitteilung auf Papier)</small></p>
+          </div>
+
+          <h2>Gesetzliche Mängelhaftung</h2>
+          <p>Es gelten die gesetzlichen Mängelgewährleistungsrechte.</p>
+          <p>Angaben zum Zustand der Artikel dienen der transparenten Beschreibung der angebotenen Ware und schränken die gesetzlichen Rechte der Verbraucher nicht ein.</p>
+
+          <div class="legal-doc-footer-note">
+            <p>Stand: September 2026</p>
+          </div>
+        </div>
+
+        <!-- Wersja Angielska (EN) - Terms of Service -->
+        <div class="legal-doc-content" data-lang-content="en" style="display: none;">
+          <h2>§ 1 Scope of Application</h2>
+          <p>These Terms and Conditions apply to all contracts concluded between:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Owner: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Germany<br><br>
+            E-mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+          <p>and our customers for the sale of goods.</p>
+          <p>Our offer is directed at both consumers and businesses, unless expressly specified otherwise in the respective offer.</p>
+
+          <h2>§ 2 Offer and Conclusion of Contract</h2>
+          <p>The presentation of our products on the website does not constitute a legally binding offer, but an invitation to place an order (invitatio ad offerendum).</p>
+          <p>A purchase contract is concluded as soon as the customer's order is accepted by us or when the goods are dispatched.</p>
+          <p>In case of sales via external platforms, particularly eBay, the terms and conditions of the respective platform apply additionally.</p>
+
+          <h2>§ 3 Condition of Goods</h2>
+          <p>Letino offers products originating from sources including:</p>
+          <ul>
+            <li>Customer returns</li>
+            <li>Overstock</li>
+            <li>Warehouse surpluses</li>
+            <li>Display items / floor samples</li>
+            <li>Unclaimed parcels</li>
+            <li>End-of-line surplus stock</li>
+          </ul>
+          <p>Consequently, goods may vary in condition.</p>
+          <p>The exact condition of each item is clearly stated in its product description.</p>
+          <p>Depending on the article, goods may be, for example:</p>
+          <ul>
+            <li>New and unused,</li>
+            <li>In original packaging,</li>
+            <li>Opened,</li>
+            <li>Inspected / tested,</li>
+            <li>Used,</li>
+            <li>With visible signs of wear,</li>
+            <li>With damaged or missing original packaging,</li>
+            <li>With missing accessories</li>
+          </ul>
+          <p>Decisive for the condition are always the individual product description and the accompanying photographs of the specific item.</p>
+
+          <h2>§ 4 ABC Goods</h2>
+          <p>Products classified as ABC goods may feature different optical or technical conditions.</p>
+          <p>Classification provides a clear and transparent overview of the item's overall condition.</p>
+          
+          <h3>Grade A</h3>
+          <p>Very good or near-mint condition. Packaging may be opened or lightly damaged.</p>
+
+          <h3>Grade B</h3>
+          <p>Goods may exhibit slight to noticeable signs of use, damaged packaging, or minor cosmetic blemishes.</p>
+
+          <h3>Grade C</h3>
+          <p>Goods may feature evident signs of use, cosmetic defects, missing accessories, or technical limitations.</p>
+
+          <p>Any known defects or limitations are explicitly detailed in the respective item description.</p>
+
+          <h2>§ 5 Prices</h2>
+          <p>All prices quoted are in euros (EUR).</p>
+          <p>Where legally applicable, prices include statutory VAT.</p>
+          <p>Shipping costs may apply additionally and are disclosed in the offer or during the checkout process.</p>
+
+          <h2>§ 6 Payment</h2>
+          <p>Available payment methods are shown to the customer during checkout or on the respective sales platform.</p>
+          <p>Payment must be settled according to the stated payment terms.</p>
+
+          <h2>§ 7 Delivery</h2>
+          <p>Delivery is made to the shipping address specified by the customer.</p>
+          <p>Estimated delivery times are indicated in the respective product listing.</p>
+          <p>Should an item exceptionally become unavailable, we will notify the customer promptly.</p>
+
+          <h2>§ 8 Retention of Title</h2>
+          <p>The delivered goods remain the property of Letino until full payment has been received.</p>
+
+          <h2>§ 9 Right of Withdrawal and Returns</h2>
+          <p>Consumers possess a statutory 14-day right of withdrawal for distance contracts.</p>
+          <p>Details regarding withdrawal and product return are specified in our Cancellation Policy below.</p>
+          <p>Statutory warranty rights remain unaffected.</p>
+          <p>The product description, including condition specifications, signs of wear, defects, or accessories, constitutes an integral part of the offer.</p>
+
+          <h2 style="margin-top: 48px; border-top: 2px solid var(--border-gold-subtle); padding-top: 28px;">Cancellation Policy</h2>
+
+          <h3>Right of Withdrawal</h3>
+          <p>If you are a consumer, you have the right to withdraw from this contract within fourteen days without providing reasons.</p>
+          <p>The withdrawal period is fourteen days from the day on which you or a third party designated by you (other than the carrier) took possession of the goods.</p>
+          <p>In the case of separate deliveries for a single order, the period begins upon receipt of the final item.</p>
+          <p>To exercise your right of withdrawal, you must notify us:</p>
+          <div class="legal-address-box">
+            <strong>Letino</strong><br>
+            Owner: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Germany<br><br>
+            E-mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a>
+          </div>
+          <p>by means of a clear statement (e.g. via e-mail) of your decision to withdraw from this contract.</p>
+          <p>You may use the model withdrawal form below, but it is not obligatory.</p>
+          <p>To meet the deadline, it is sufficient to send the notification prior to the expiration of the 14-day period.</p>
+
+          <h3>Consequences of Withdrawal</h3>
+          <p>If you withdraw from this contract, we will reimburse all payments received from you, including delivery charges (except supplementary costs resulting from choosing a non-standard delivery type), without undue delay and at the latest within fourteen days from receipt of your cancellation notice.</p>
+          <p>We will use the same means of payment used for the initial transaction, unless expressly agreed otherwise.</p>
+          <p>We may withhold reimbursement until we have received the returned goods or evidence of dispatch, whichever is earlier.</p>
+          <p>You must return or hand over the goods to us without undue delay and in any event no later than fourteen days from notifying us of withdrawal.</p>
+          <p>The deadline is met if you dispatch the goods before the period of fourteen days has expired.</p>
+          <p>You bear the direct cost of returning the goods.</p>
+          <p>You are only liable for diminished value resulting from handling beyond what is necessary to establish the nature, characteristics, and functioning of the goods.</p>
+
+          <h3>Model Withdrawal Form</h3>
+          <p>If you wish to withdraw from the contract, you can fill out and return this form.</p>
+          <div class="legal-form-box">
+            <p style="margin-bottom: 12px;"><strong>To:</strong><br>
+            Letino<br>
+            Owner: Tomasz Nowak<br>
+            Schleifweg 5<br>
+            86641 Rain am Lech<br>
+            Germany<br>
+            E-mail: <a href="mailto:letino.outlet@gmail.com" style="color: var(--letino-gold-light); text-decoration: none;">letino.outlet@gmail.com</a></p>
+
+            <p style="margin-bottom: 12px;">I/we hereby give notice of withdrawal from the contract concluded for the purchase of the following goods:</p>
+            <p style="margin-bottom: 6px;">Article:</p>
+            <p style="margin-bottom: 6px;">Order number:</p>
+            <p style="margin-bottom: 6px;">Order date:</p>
+            <p style="margin-bottom: 6px;">Received on:</p>
+            <p style="margin-bottom: 6px;">Consumer's name:</p>
+            <p style="margin-bottom: 6px;">Consumer's address:</p>
+            <p style="margin-bottom: 6px;">Date:</p>
+            <p style="margin-bottom: 0;">Consumer's signature:<br>
+            <small style="color: var(--text-muted);">(only if submitted on paper)</small></p>
+          </div>
+
+          <h2>Statutory Warranty</h2>
+          <p>Statutory consumer warranty rights apply.</p>
+          <p>Item condition details serve the transparent description of the offered goods and do not restrict statutory consumer rights.</p>
+
+          <div class="legal-doc-footer-note">
+            <p>As of: September 2026</p>
+          </div>
         </div>
       </article>
 
@@ -439,7 +742,7 @@
       <!-- Linki do informacji prawnych i Copyright -->
       <div class="footer-bottom-bar">
         <div class="copyright">
-          &copy; <span id="year">2026</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
+          &copy; <span id="year">2023</span> <span data-i18n="copyright_text">Letino Outlet. Wszelkie prawa zastrzeżone.</span>
         </div>
 
         <div class="legal-links">
