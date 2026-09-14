@@ -2334,9 +2334,14 @@ section {
    STOPKA (FOOTER)
    ========================================================================== */
 .footer {
+  position: relative;
+  z-index: 10;
   margin-top: auto;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(8, 12, 22, 0.95) 0%, rgba(5, 7, 13, 0.99) 100%);
+  background: rgba(7, 10, 18, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.55);
   padding: 56px 0 28px;
 }
 
