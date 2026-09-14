@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css?v=4.8">
+  <link rel="stylesheet" href="style.css?v=5.2">
 
   <!-- Google Analytics 4 (zachowane zgodnie z konfiguracją główną) -->
   <script>
@@ -81,7 +81,7 @@
       <div class="header-right">
         <!-- Przełącznik języka (DE / EN / PL) -->
         <div class="lang-switcher" role="radiogroup" aria-label="Wybór języka / Language selection" data-i18n-aria="aria_lang_choice">
-          <button type="button" class="lang-tile active" data-lang="de" title="Deutsch" aria-label="Deutsche Sprache" role="radio" aria-checked="true">
+          <button type="button" class="lang-tile" data-lang="de" title="Deutsch" aria-label="Deutsche Sprache" role="radio" aria-checked="false" onclick="switchLegalDocLanguage('de')">
             <span class="lang-flag-box">
               <svg class="lang-flag-svg" viewBox="0 0 640 480" width="20" height="20" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="640" height="160" fill="#000000"/>
@@ -91,7 +91,7 @@
             </span>
             <span class="lang-code">DE</span>
           </button>
-          <button type="button" class="lang-tile" data-lang="en" title="English" aria-label="English language" role="radio" aria-checked="false">
+          <button type="button" class="lang-tile" data-lang="en" title="English" aria-label="English language" role="radio" aria-checked="false" onclick="switchLegalDocLanguage('en')">
             <span class="lang-flag-box">
               <svg class="lang-flag-svg" viewBox="0 0 640 480" width="20" height="20" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <path fill="#012169" d="M0 0h640v480H0z"/>
@@ -103,7 +103,7 @@
             </span>
             <span class="lang-code">EN</span>
           </button>
-          <button type="button" class="lang-tile" data-lang="pl" title="Polski" aria-label="Język Polski" role="radio" aria-checked="false">
+          <button type="button" class="lang-tile active" data-lang="pl" title="Polski" aria-label="Język Polski" role="radio" aria-checked="true" onclick="switchLegalDocLanguage('pl')">
             <span class="lang-flag-box">
               <svg class="lang-flag-svg" viewBox="0 0 640 480" width="20" height="20" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="640" height="240" fill="#FFFFFF"/>
@@ -189,19 +189,13 @@
       
       <!-- Nawigacja okruszkowa (Breadcrumbs) -->
       <nav class="legal-breadcrumbs" aria-label="Ścieżka powrotu">
-        <a href="index.html">&larr; Strona Główna</a>
+        <a href="index.html" data-i18n="crumb_home">&larr; Strona Główna</a>
         <span aria-hidden="true">&bull;</span>
-        <span>Polityka prywatności</span>
+        <span data-i18n="footer_privacy">Polityka prywatności</span>
       </nav>
 
       <!-- Karta dokumentu prawnego -->
       <article class="legal-doc-card">
-        
-        <header class="legal-doc-header">
-          <span class="legal-doc-badge">Dokument prawny / Legal Document</span>
-          <h1 class="legal-doc-title">Polityka prywatności</h1>
-          <p class="legal-doc-meta">Stan na: wrzesień 2026</p>
-        </header>
 
         <!-- Selektor wyboru języka dokumentu -->
         <div class="legal-doc-lang-selector" role="region" aria-label="Wybór języka dokumentu / Language selection">
@@ -214,14 +208,19 @@
             <span data-i18n="legal_lang_label">Język dokumentu:</span>
           </div>
           <div class="legal-doc-lang-pills">
-            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="pl" aria-pressed="true">🇵🇱 Polski</button>
-            <button type="button" class="legal-lang-pill-btn" data-legal-lang="de" aria-pressed="false">🇩🇪 Deutsch</button>
-            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" aria-pressed="false">🇬🇧 English</button>
+            <button type="button" class="legal-lang-pill-btn active" data-legal-lang="pl" onclick="switchLegalDocLanguage('pl')" aria-pressed="true">🇵🇱 Polski</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="de" onclick="switchLegalDocLanguage('de')" aria-pressed="false">🇩🇪 Deutsch</button>
+            <button type="button" class="legal-lang-pill-btn" data-legal-lang="en" onclick="switchLegalDocLanguage('en')" aria-pressed="false">🇬🇧 English</button>
           </div>
         </div>
 
         <!-- Wersja Polska (PL) -->
         <div class="legal-doc-content" data-lang-content="pl">
+          <header class="legal-doc-header">
+            <span class="legal-doc-badge">Dokument prawny</span>
+            <h1 class="legal-doc-title">Polityka prywatności</h1>
+            <p class="legal-doc-meta">Stan na: wrzesień 2026</p>
+          </header>
           
           <h2>1. Administrator danych</h2>
           <p>Administratorem odpowiedzialnym za przetwarzanie danych osobowych na tej stronie internetowej jest:</p>
@@ -424,6 +423,11 @@
 
         <!-- Wersja Niemiecka (DE) - Datenschutzerklärung -->
         <div class="legal-doc-content" data-lang-content="de" style="display: none;">
+          <header class="legal-doc-header">
+            <span class="legal-doc-badge">Rechtsdokument</span>
+            <h1 class="legal-doc-title">Datenschutzerklärung</h1>
+            <p class="legal-doc-meta">Stand: September 2026</p>
+          </header>
           <h2>1. Verantwortlicher</h2>
           <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:</p>
           <div class="legal-address-box">
@@ -625,6 +629,11 @@
 
         <!-- Wersja Angielska (EN) - Privacy Policy -->
         <div class="legal-doc-content" data-lang-content="en" style="display: none;">
+          <header class="legal-doc-header">
+            <span class="legal-doc-badge">Legal Document</span>
+            <h1 class="legal-doc-title">Privacy Policy</h1>
+            <p class="legal-doc-meta">As of: September 2026</p>
+          </header>
           <h2>1. Data Controller</h2>
           <p>The controller responsible for data processing on this website is:</p>
           <div class="legal-address-box">
@@ -927,6 +936,60 @@
     </svg>
   </button>
 
-  <script src="script.js?v=4.8"></script>
+  <!-- Niezawodny skrypt natychmiastowej obsługi języków podstrony -->
+  <script>
+    function switchLegalDocLanguage(lang) {
+      var valid = ['pl', 'de', 'en'];
+      if (valid.indexOf(lang) === -1) lang = 'pl';
+      
+      // 1. Pokaż treść dla wybranego języka, ukryj pozostałe
+      var blocks = document.querySelectorAll('[data-lang-content]');
+      for (var i = 0; i < blocks.length; i++) {
+        if (blocks[i].getAttribute('data-lang-content') === lang) {
+          blocks[i].style.display = 'block';
+        } else {
+          blocks[i].style.display = 'none';
+        }
+      }
+      
+      // 2. Zaktualizuj stan pigułek wyboru języka dokumentu
+      var pills = document.querySelectorAll('.legal-lang-pill-btn');
+      for (var j = 0; j < pills.length; j++) {
+        var isAct = (pills[j].getAttribute('data-legal-lang') === lang);
+        pills[j].classList.toggle('active', isAct);
+        pills[j].setAttribute('aria-pressed', isAct ? 'true' : 'false');
+      }
+
+      // 3. Zaktualizuj kafelki wyboru w nagłówku
+      var tiles = document.querySelectorAll('.lang-tile');
+      for (var k = 0; k < tiles.length; k++) {
+        var isTAct = (tiles[k].getAttribute('data-lang') === lang);
+        tiles[k].classList.toggle('active', isTAct);
+        tiles[k].setAttribute('aria-checked', isTAct ? 'true' : 'false');
+      }
+      
+      // 4. Zapisz preferencję
+      try {
+        localStorage.setItem('letino_lang', lang);
+      } catch(e) {}
+      
+      // 5. Jeśli script.js jest załadowany, zsynchronizuj resztę strony
+      if (typeof window.setSiteLanguage === 'function') {
+        window.setSiteLanguage(lang, true);
+      }
+    }
+
+    // Inicjalizacja przy starcie strony na podstawie localStorage
+    (function() {
+      try {
+        var saved = localStorage.getItem('letino_lang');
+        if (saved && (saved === 'pl' || saved === 'de' || saved === 'en')) {
+          switchLegalDocLanguage(saved);
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <script src="script.js?v=5.2"></script>
 </body>
 </html>

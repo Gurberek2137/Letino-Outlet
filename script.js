@@ -891,9 +891,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyLanguage = () => {
       document.documentElement.lang = selectedLang;
-      const isFaq = document.body.getAttribute('data-page') === 'faq';
-      if (isFaq && dict.faq_doc_title) {
+      const pageType = document.body.getAttribute('data-page');
+
+      if (pageType === 'faq' && dict.faq_doc_title) {
         document.title = dict.faq_doc_title;
+      } else if (pageType === 'terms') {
+        document.title = (selectedLang === 'pl') 
+          ? 'Regulamin | Letino Outlet' 
+          : (selectedLang === 'de' ? 'AGB – Allgemeine Geschäftsbedingungen | Letino Outlet' : 'Terms and Conditions | Letino Outlet');
+      } else if (pageType === 'privacy') {
+        document.title = (selectedLang === 'pl') 
+          ? 'Polityka prywatności | Letino Outlet' 
+          : (selectedLang === 'de' ? 'Datenschutzerklärung | Letino Outlet' : 'Privacy Policy | Letino Outlet');
+      } else if (pageType === 'impressum') {
+        document.title = (selectedLang === 'pl') 
+          ? 'Impressum | Letino Outlet' 
+          : (selectedLang === 'de' ? 'Impressum | Letino Outlet' : 'Impressum / Legal Notice | Letino Outlet');
       } else if (dict.doc_title) {
         document.title = dict.doc_title;
       }
@@ -901,8 +914,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Aktualizacja meta description
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        if (isFaq && dict.faq_doc_desc) {
+        if (pageType === 'faq' && dict.faq_doc_desc) {
           metaDesc.setAttribute('content', dict.faq_doc_desc);
+        } else if (pageType === 'terms') {
+          metaDesc.setAttribute('content', (selectedLang === 'pl') 
+            ? 'Regulamin serwisu Letino Outlet. Zasady zawierania umów, stan towarów, klasyfikacja ABC-Ware, dostawa i zwroty.'
+            : (selectedLang === 'de' ? 'Allgemeine Geschäftsbedingungen (AGB) von Letino Outlet. Warenzustand, ABC-Ware, Lieferung und Widerrufsrecht.' : 'Terms and Conditions for Letino Outlet. Contract formation, item conditions, ABC-Ware grading, and returns.'));
+        } else if (pageType === 'privacy') {
+          metaDesc.setAttribute('content', (selectedLang === 'pl')
+            ? 'Polityka prywatności Letino Outlet. Zasady przetwarzania danych osobowych, pliki cookie i prawa użytkowników.'
+            : (selectedLang === 'de' ? 'Datenschutzerklärung von Letino Outlet. Informationen zur Verarbeitung personenbezogener Daten und Betroffenenrechte.' : 'Privacy Policy for Letino Outlet. Information about personal data processing and privacy rights.'));
+        } else if (pageType === 'impressum') {
+          metaDesc.setAttribute('content', (selectedLang === 'pl')
+            ? 'Impressum Letino Outlet – dane identyfikacyjne i kontaktowe sprzedawcy zgodnie z przepisami prawa.'
+            : (selectedLang === 'de' ? 'Impressum von Letino Outlet – gesetzliche Anbieterkennzeichnung und Kontaktdaten.' : 'Impressum and Legal Notice for Letino Outlet – provider identification and contact details.'));
         } else if (dict.doc_desc) {
           metaDesc.setAttribute('content', dict.doc_desc);
         }
@@ -1044,6 +1069,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Eksport funkcji do przestrzeni globalnej dla bezpośredniego wywoływania z poziomu HTML
+  window.setSiteLanguage = setLanguage;
+  window.switchLegalDocLanguage = setLanguage;
+
   // Obsługa pigułek wyboru języka w dokumentach prawnych
   document.querySelectorAll('.legal-lang-pill-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -1060,15 +1089,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeTile) updateLangGlideTo(activeTile);
   }, { passive: true });
 
-  // Inicjalizacja języka (domyślny: niemiecki 'de')
-  let initialLang = 'de';
+  // Inicjalizacja języka (domyślny: de, a dla dokumentów prawnych pl/de)
+  const currentPage = document.body.getAttribute('data-page');
+  let initialLang = (currentPage === 'impressum') ? 'de' : ((currentPage === 'terms' || currentPage === 'privacy') ? 'pl' : 'de');
   try {
     const saved = localStorage.getItem('letino_lang');
     if (saved && translations[saved]) {
       initialLang = saved;
     }
   } catch (e) {
-    initialLang = 'de';
+    initialLang = (currentPage === 'impressum') ? 'de' : ((currentPage === 'terms' || currentPage === 'privacy') ? 'pl' : 'de');
   }
 
   // Natychmiastowe zastosowanie domyślnego języka (bez opóźnienia)
