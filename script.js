@@ -326,7 +326,23 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_cta_btn: "Napisz na Instagramie &rarr;",
       faq_cta_home: "Wróć do strony głównej",
       faq_doc_title: "FAQ – Pytania i Odpowiedzi | Letino Outlet",
-      faq_doc_desc: "Odpowiedzi na pytania dotyczące pochodzenia sprzętu, weryfikacji stanu technicznego, zakupu oraz wysyłki w Letino Outlet."
+      faq_doc_desc: "Odpowiedzi na pytania dotyczące pochodzenia sprzętu, weryfikacji stanu technicznego, zakupu oraz wysyłki w Letino Outlet.",
+
+      // Pliki cookie & Zgody (Cookie Consent)
+      cookie_banner_text: 'Ta strona korzysta z plików cookie. Niezbędne pliki cookie są wymagane do prawidłowego działania strony. Za Twoją zgodą możemy również korzystać z plików cookie analitycznych, takich jak Google Analytics, aby analizować korzystanie ze strony. Więcej informacji znajdziesz w <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Polityce prywatności</a>.',
+      cookie_link_privacy: 'Polityce prywatności',
+      cookie_btn_accept: 'Akceptuj wszystkie',
+      cookie_btn_reject: 'Odrzuć',
+      cookie_btn_settings: 'Ustawienia',
+      cookie_modal_title: 'Ustawienia plików cookie',
+      cookie_modal_desc: 'Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia.',
+      cookie_cat_essential_title: 'Niezbędne',
+      cookie_cat_essential_badge: 'Zawsze aktywne',
+      cookie_cat_essential_desc: 'Niezbędne do prawidłowego funkcjonowania strony internetowej oraz zapamiętania wybranych preferencji (np. języka, stanu zgody na pliki cookie). Nie można ich wyłączyć.',
+      cookie_cat_analytics_title: 'Analityczne',
+      cookie_cat_analytics_desc: 'Pozwalają nam analizować ruch na stronie i zrozumieć, jak użytkownicy z niej korzystają (Google Analytics 4). Pomaga nam to udoskonalać asortyment i działanie serwisu. Domyślnie wyłączone.',
+      cookie_btn_save: 'Zapisz ustawienia',
+      footer_cookies: 'Ustawienia cookies'
     },
 
     en: {
@@ -602,7 +618,23 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_cta_btn: "Message on Instagram &rarr;",
       faq_cta_home: "Back to Home",
       faq_doc_title: "FAQ – Questions &amp; Answers | Letino Outlet",
-      faq_doc_desc: "Answers to questions regarding merchandise origin, condition grading, ordering, and shipping at Letino Outlet."
+      faq_doc_desc: "Answers to questions regarding merchandise origin, condition grading, ordering, and shipping at Letino Outlet.",
+
+      // Cookies & Consent
+      cookie_banner_text: 'This website uses cookies. Essential cookies are required for the proper functioning of the website. With your consent, we may also use analytical cookies, such as Google Analytics, to analyze website usage. More information can be found in our <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Privacy Policy</a>.',
+      cookie_link_privacy: 'Privacy Policy',
+      cookie_btn_accept: 'Accept all',
+      cookie_btn_reject: 'Reject',
+      cookie_btn_settings: 'Settings',
+      cookie_modal_title: 'Cookie Settings',
+      cookie_modal_desc: 'Manage your cookie preferences. You can change your choices at any time.',
+      cookie_cat_essential_title: 'Essential',
+      cookie_cat_essential_badge: 'Always active',
+      cookie_cat_essential_desc: 'Essential for the proper functioning of the website and remembering your preferences (e.g. language, cookie consent status). These cannot be disabled.',
+      cookie_cat_analytics_title: 'Analytics',
+      cookie_cat_analytics_desc: 'Allows us to analyze website traffic and understand how visitors interact with the site (Google Analytics 4). Helps us improve our deals and service. Disabled by default.',
+      cookie_btn_save: 'Save preferences',
+      footer_cookies: 'Cookie Settings'
     },
 
     de: {
@@ -878,7 +910,23 @@ document.addEventListener('DOMContentLoaded', () => {
       faq_cta_btn: "Auf Instagram schreiben &rarr;",
       faq_cta_home: "Zur Startseite zurückkehren",
       faq_doc_title: "FAQ – Fragen &amp; Antworten | Letino Outlet",
-      faq_doc_desc: "Antworten auf Fragen zu Produktherkunft, Zustandsprüfung, Bestellung und Versand bei Letino Outlet."
+      faq_doc_desc: "Antworten auf Fragen zu Produktherkunft, Zustandsprüfung, Bestellung und Versand bei Letino Outlet.",
+
+      // Cookies & Einwilligung
+      cookie_banner_text: 'Diese Website verwendet Cookies. Notwendige Cookies sind für den ordnungsgemäßen Betrieb der Website erforderlich. Mit Ihrer Einwilligung können wir auch analytische Cookies wie Google Analytics verwenden, um die Website-Nutzung zu analysieren. Weitere Informationen finden Sie in der <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Datenschutzerklärung</a>.',
+      cookie_link_privacy: 'Datenschutzerklärung',
+      cookie_btn_accept: 'Alle akzeptieren',
+      cookie_btn_reject: 'Ablehnen',
+      cookie_btn_settings: 'Einstellungen',
+      cookie_modal_title: 'Cookie-Einstellungen',
+      cookie_modal_desc: 'Verwalten Sie Ihre Cookie-Einstellungen. Sie können Ihre Auswahl jederzeit ändern.',
+      cookie_cat_essential_title: 'Notwendig',
+      cookie_cat_essential_badge: 'Immer aktiv',
+      cookie_cat_essential_desc: 'Erforderlich für den ordnungsgemäßen Betrieb der Website und das Speichern Ihrer Einstellungen (z. B. Sprache, Einwilligungsstatus). Diese können nicht deaktiviert werden.',
+      cookie_cat_analytics_title: 'Analytisch',
+      cookie_cat_analytics_desc: 'Ermöglichen uns die Analyse des Website-Verkehrs und das Verständnis der Nutzung (Google Analytics 4). Hilft uns, Sortiment und Service zu verbessern. Standardmäßig deaktiviert.',
+      cookie_btn_save: 'Einstellungen speichern',
+      footer_cookies: 'Cookie-Einstellungen'
     }
   };
 
@@ -1650,4 +1698,132 @@ document.addEventListener('DOMContentLoaded', () => {
       isScrollTicking = true;
     }
   }, { passive: true });
+
+  // =========================================================================
+  // SYSTEM ZGÓD COOKIES (COOKIE CONSENT & SETTINGS MODAL)
+  // =========================================================================
+  const cookieBanner = document.getElementById('cookieBanner');
+  const cookieModal = document.getElementById('cookieModal');
+  const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+  const cookieRejectBtn = document.getElementById('cookieRejectBtn');
+  const cookieSettingsBtn = document.getElementById('cookieSettingsBtn');
+  const cookieModalCloseBtn = document.getElementById('cookieModalCloseBtn');
+  const cookieModalBackdrop = document.getElementById('cookieModalBackdrop');
+  const cookieModalSaveBtn = document.getElementById('cookieModalSaveBtn');
+  const cookieModalRejectAllBtn = document.getElementById('cookieModalRejectAllBtn');
+  const cookieToggleAnalytics = document.getElementById('cookieToggleAnalytics');
+
+  function getStoredConsent() {
+    try {
+      const raw = localStorage.getItem('letino_cookie_consent');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object' && parsed.answered) {
+          return parsed;
+        }
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function applyConsentChoice(analyticsGranted) {
+    const isGranted = Boolean(analyticsGranted);
+    const consentPayload = {
+      answered: true,
+      analytics: isGranted,
+      version: 1,
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      localStorage.setItem('letino_cookie_consent', JSON.stringify(consentPayload));
+      localStorage.setItem('letino_consent_analytics', isGranted ? 'granted' : 'denied');
+    } catch (e) {}
+
+    if (isGranted) {
+      if (typeof window.grantAnalyticsConsent === 'function') {
+        window.grantAnalyticsConsent();
+      } else if (typeof gtag === 'function') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } else {
+      if (typeof window.revokeAnalyticsConsent === 'function') {
+        window.revokeAnalyticsConsent();
+      } else if (typeof gtag === 'function') {
+        gtag('consent', 'update', { 'analytics_storage': 'denied' });
+      }
+    }
+
+    if (cookieBanner) {
+      cookieBanner.classList.remove('is-visible');
+      cookieBanner.setAttribute('aria-hidden', 'true');
+    }
+    closeCookieModal();
+  }
+
+  function openCookieModal() {
+    if (!cookieModal) return;
+    const current = getStoredConsent();
+    if (cookieToggleAnalytics) {
+      cookieToggleAnalytics.checked = current ? Boolean(current.analytics) : false;
+    }
+    cookieModal.classList.add('is-active');
+    cookieModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('cookie-modal-open');
+  }
+
+  function closeCookieModal() {
+    if (!cookieModal) return;
+    cookieModal.classList.remove('is-active');
+    cookieModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('cookie-modal-open');
+  }
+
+  window.openCookieSettings = openCookieModal;
+
+  if (cookieAcceptBtn) {
+    cookieAcceptBtn.addEventListener('click', () => applyConsentChoice(true));
+  }
+  if (cookieRejectBtn) {
+    cookieRejectBtn.addEventListener('click', () => applyConsentChoice(false));
+  }
+  if (cookieSettingsBtn) {
+    cookieSettingsBtn.addEventListener('click', openCookieModal);
+  }
+  if (cookieModalCloseBtn) {
+    cookieModalCloseBtn.addEventListener('click', closeCookieModal);
+  }
+  if (cookieModalBackdrop) {
+    cookieModalBackdrop.addEventListener('click', closeCookieModal);
+  }
+  if (cookieModalSaveBtn) {
+    cookieModalSaveBtn.addEventListener('click', () => {
+      const isChecked = cookieToggleAnalytics ? cookieToggleAnalytics.checked : false;
+      applyConsentChoice(isChecked);
+    });
+  }
+  if (cookieModalRejectAllBtn) {
+    cookieModalRejectAllBtn.addEventListener('click', () => applyConsentChoice(false));
+  }
+
+  document.querySelectorAll('.cookie-settings-trigger').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCookieModal();
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cookieModal && cookieModal.classList.contains('is-active')) {
+      closeCookieModal();
+    }
+  });
+
+  const existingConsent = getStoredConsent();
+  if (!existingConsent && cookieBanner) {
+    setTimeout(() => {
+      cookieBanner.classList.add('is-visible');
+      cookieBanner.setAttribute('aria-hidden', 'false');
+    }, 280);
+  }
 });

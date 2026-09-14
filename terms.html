@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css?v=5.7">
+  <link rel="stylesheet" href="style.css?v=5.8">
 
   <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
   <script>
@@ -77,7 +77,13 @@
 
     // Sprawdzenie zapamiętanej zgody użytkownika
     try {
-      if (localStorage.getItem('letino_consent_analytics') === 'granted') {
+      var savedConsent = localStorage.getItem('letino_cookie_consent');
+      if (savedConsent) {
+        var parsed = JSON.parse(savedConsent);
+        if (parsed && parsed.analytics === true) {
+          initGoogleAnalytics();
+        }
+      } else if (localStorage.getItem('letino_consent_analytics') === 'granted') {
         initGoogleAnalytics();
       }
     } catch(e) {}
@@ -785,6 +791,8 @@
           <a href="terms.html" class="legal-link-btn" data-i18n="footer_terms">Regulamin Serwisu</a>
           <span class="legal-sep" aria-hidden="true">&bull;</span>
           <a href="impressum.html" class="legal-link-btn" data-i18n="footer_impressum">Impressum</a>
+          <span class="legal-sep" aria-hidden="true">&bull;</span>
+          <button type="button" class="legal-link-btn cookie-settings-trigger" id="openCookieSettingsBtn" data-i18n="footer_cookies">Ustawienia cookies</button>
         </div>
       </div>
 
@@ -835,22 +843,6 @@
           blocks[i].style.display = 'none';
         }
       }
-      
-  <!-- Niezawodny skrypt natychmiastowej obsługi języków podstrony -->
-  <script>
-    function switchLegalDocLanguage(lang) {
-      var valid = ['pl', 'de', 'en'];
-      if (valid.indexOf(lang) === -1) lang = 'pl';
-      
-      // 1. Pokaż treść dla wybranego języka, ukryj pozostałe
-      var blocks = document.querySelectorAll('[data-lang-content]');
-      for (var i = 0; i < blocks.length; i++) {
-        if (blocks[i].getAttribute('data-lang-content') === lang) {
-          blocks[i].style.display = 'block';
-        } else {
-          blocks[i].style.display = 'none';
-        }
-      }
 
       // 2. Zaktualizuj kafelki wyboru w nagłówku
       var tiles = document.querySelectorAll('.lang-tile');
@@ -882,6 +874,101 @@
     })();
   </script>
 
-  <script src="script.js?v=5.3"></script>
+  <!-- BANER COOKIES -->
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Zgoda na pliki cookie" role="region" aria-hidden="true">
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-content">
+        <div class="cookie-banner-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+            <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="14" cy="15" r="1.5" fill="currentColor"></circle>
+            <circle cx="16" cy="11" r="1.5" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <div class="cookie-banner-text">
+          <p data-i18n="cookie_banner_text">
+            Ta strona korzysta z plików cookie. Niezbędne pliki cookie są wymagane do prawidłowego działania strony. Za Twoją zgodą możemy również korzystać z plików cookie analitycznych, takich jak Google Analytics, aby analizować korzystanie ze strony. Więcej informacji znajdziesz w <a href="privacy-policy.html" class="cookie-policy-link" data-i18n="cookie_link_privacy">Polityce prywatności</a>.
+          </p>
+        </div>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieRejectBtn" data-i18n="cookie_btn_reject">Odrzuć</button>
+        <button type="button" class="btn-cookie btn-cookie-settings" id="cookieSettingsBtn" data-i18n="cookie_btn_settings">Ustawienia</button>
+        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAcceptBtn" data-i18n="cookie_btn_accept">Akceptuj wszystkie</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MODAL USTAWIEŃ COOKIES -->
+  <div class="cookie-modal" id="cookieModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+    <div class="cookie-modal-backdrop" id="cookieModalBackdrop"></div>
+    <div class="cookie-modal-card">
+      <div class="cookie-modal-header">
+        <div class="cookie-modal-title-wrap">
+          <div class="cookie-modal-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3 class="cookie-modal-title" id="cookieModalTitle" data-i18n="cookie_modal_title">Ustawienia plików cookie</h3>
+        </div>
+        <button type="button" class="cookie-modal-close" id="cookieModalCloseBtn" aria-label="Zamknij okno">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cookie-modal-body">
+        <p class="cookie-modal-desc" data-i18n="cookie_modal_desc">
+          Zarządzaj swoimi preferencjami dotyczącymi plików cookie. Możesz w każdej chwili zmienić swoje ustawienia.
+        </p>
+
+        <!-- Kategoria: Niezbędne -->
+        <div class="cookie-category-item">
+          <div class="cookie-category-header">
+            <div class="cookie-category-title-wrap">
+              <span class="cookie-category-name" data-i18n="cookie_cat_essential_title">Niezbędne</span>
+              <span class="cookie-category-badge" data-i18n="cookie_cat_essential_badge">Zawsze aktywne</span>
+            </div>
+            <div class="cookie-toggle-wrap">
+              <input type="checkbox" id="cookieToggleEssential" checked disabled aria-label="Niezbędne pliki cookie (zawsze aktywne)">
+              <label for="cookieToggleEssential" class="cookie-toggle-slider is-disabled" aria-hidden="true"></label>
+            </div>
+          </div>
+          <p class="cookie-category-desc" data-i18n="cookie_cat_essential_desc">
+            Niezbędne do prawidłowego funkcjonowania strony internetowej oraz zapamiętania wybranych preferencji (np. języka, stanu zgody na pliki cookie). Nie można ich wyłączyć.
+          </p>
+        </div>
+
+        <!-- Kategoria: Analityczne -->
+        <div class="cookie-category-item">
+          <div class="cookie-category-header">
+            <div class="cookie-category-title-wrap">
+              <span class="cookie-category-name" data-i18n="cookie_cat_analytics_title">Analityczne</span>
+            </div>
+            <div class="cookie-toggle-wrap">
+              <input type="checkbox" id="cookieToggleAnalytics" aria-label="Zgoda na analityczne pliki cookie (Google Analytics 4)">
+              <label for="cookieToggleAnalytics" class="cookie-toggle-slider" aria-hidden="true"></label>
+            </div>
+          </div>
+          <p class="cookie-category-desc" data-i18n="cookie_cat_analytics_desc">
+            Pozwalają nam analizować ruch na stronie i zrozumieć, jak użytkownicy z niej korzystają (Google Analytics 4). Pomaga nam to udoskonalać asortyment i działanie serwisu. Domyślnie wyłączone.
+          </p>
+        </div>
+      </div>
+
+      <div class="cookie-modal-footer">
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieModalRejectAllBtn" data-i18n="cookie_btn_reject">Odrzuć</button>
+        <button type="button" class="btn-cookie btn-cookie-save" id="cookieModalSaveBtn" data-i18n="cookie_btn_save">Zapisz ustawienia</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=5.4"></script>
 </body>
 </html>
