@@ -827,8 +827,26 @@ button {
    ========================================================================== */
 .hero {
   position: relative;
-  padding: 80px 0 60px;
+  padding: 84px 0 64px;
   text-align: center;
+  background-color: var(--bg-deep);
+  background-image: url('assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Delikatny overlay poprawiający czytelność centralnego tekstu bez tłumienia obrazu */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 62% 56% at 50% 50%, rgba(7, 9, 15, 0.62) 0%, rgba(7, 9, 15, 0.26) 55%, transparent 85%),
+    linear-gradient(180deg, rgba(7, 9, 15, 0.6) 0%, transparent 16%, transparent 82%, var(--bg-deep) 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-glow {
@@ -838,7 +856,7 @@ button {
   transform: translateX(-50%);
   width: 900px;
   height: 520px;
-  background: radial-gradient(ellipse 65% 55% at 50% 30%, rgba(245, 208, 97, 0.22) 0%, rgba(225, 29, 142, 0.12) 35%, rgba(225, 29, 142, 0.03) 60%, transparent 72%);
+  background: radial-gradient(ellipse 65% 55% at 50% 30%, rgba(245, 208, 97, 0.15) 0%, rgba(225, 29, 142, 0.08) 35%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -2881,7 +2899,14 @@ body.lang-fade-out [data-i18n] {
 
   /* Hero */
   .hero {
-    padding: 36px 0 32px;
+    padding: 38px 0 34px;
+    background-position: center center;
+  }
+
+  .hero::before {
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(7, 9, 15, 0.72) 0%, rgba(7, 9, 15, 0.42) 60%, rgba(7, 9, 15, 0.15) 100%),
+      linear-gradient(180deg, rgba(7, 9, 15, 0.7) 0%, transparent 12%, transparent 86%, var(--bg-deep) 100%);
   }
 
   .hero-glow {
