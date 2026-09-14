@@ -1660,6 +1660,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     return function onNavScrollTick(scrollY) {
+      if (window.innerWidth <= 1120) return;
+
       if (isFaqPage) {
         if (contactSection) {
           if (scrollY + window.innerHeight * 0.45 >= contactTopCached) {

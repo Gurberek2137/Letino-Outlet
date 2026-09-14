@@ -76,11 +76,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -243,6 +243,29 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Optymalizacja wydajności renderowania sekcji i kart */
+.products-section,
+.ebay-proof-section,
+.about-section,
+.categories-section,
+.features-section,
+.abc-section,
+.main-faq-section,
+.contact-section,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+.product-card,
+.category-card,
+.contact-card,
+.main-faq-item,
+.abc-card,
+.honesty-card {
+  contain: layout style;
 }
 
 button {
@@ -2847,6 +2870,28 @@ body.lang-fade-out [data-i18n] {
   
   .footer-brand-col {
     grid-column: span 2;
+  }
+
+  /* Wyłączenie kosztownego blur-overdraw dla przewijanych kart na mobile/tablet */
+  .hero-brand-card,
+  .product-card,
+  .category-card,
+  .abc-card,
+  .honesty-card,
+  .why-us-card,
+  .contact-card,
+  .main-faq-item,
+  .platform-card,
+  .footer-brand-card,
+  .about-points li {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(13, 17, 28, 0.94);
+  }
+
+  /* Zatrzymanie ciągłej animacji wielkich gradientów w tle na mobile */
+  .ambient-orb {
+    animation: none !important;
   }
 }
 
