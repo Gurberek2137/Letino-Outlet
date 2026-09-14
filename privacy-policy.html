@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css?v=6.0">
+  <link rel="stylesheet" href="style.css?v=6.1">
 
   <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1CEW47MBJ"></script>
@@ -63,13 +63,13 @@
 
     // Sprawdzenie zapamiętanej zgody użytkownika
     try {
-      var savedConsent = localStorage.getItem('letino_cookie_consent');
+      var savedConsent = localStorage.getItem('letino_cookie_consent_v2') || localStorage.getItem('letino_cookie_consent');
       if (savedConsent) {
         var parsed = JSON.parse(savedConsent);
         if (parsed && parsed.analytics === true) {
           gtag('consent', 'update', { 'analytics_storage': 'granted' });
         }
-      } else if (localStorage.getItem('letino_consent_analytics') === 'granted') {
+      } else if (localStorage.getItem('letino_consent_analytics_v2') === 'granted' || localStorage.getItem('letino_consent_analytics') === 'granted') {
         gtag('consent', 'update', { 'analytics_storage': 'granted' });
       }
     } catch(e) {}
@@ -1094,6 +1094,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=5.6"></script>
+  <script src="script.js?v=5.7"></script>
 </body>
 </html>

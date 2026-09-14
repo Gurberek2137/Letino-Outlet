@@ -1762,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getStoredConsent() {
     try {
-      const raw = localStorage.getItem('letino_cookie_consent');
+      const raw = localStorage.getItem('letino_cookie_consent_v2');
       if (raw) {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === 'object' && parsed.answered) {
@@ -1778,12 +1778,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const consentPayload = {
       answered: true,
       analytics: isGranted,
-      version: 1,
+      version: 2,
       timestamp: new Date().toISOString()
     };
 
     try {
+      localStorage.setItem('letino_cookie_consent_v2', JSON.stringify(consentPayload));
       localStorage.setItem('letino_cookie_consent', JSON.stringify(consentPayload));
+      localStorage.setItem('letino_consent_analytics_v2', isGranted ? 'granted' : 'denied');
       localStorage.setItem('letino_consent_analytics', isGranted ? 'granted' : 'denied');
     } catch (e) {}
 
@@ -1826,7 +1828,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('cookie-modal-open');
   }
 
+  function openCookieBanner() {
+    if (cookieBanner) {
+      cookieBanner.classList.add('is-visible');
+      cookieBanner.setAttribute('aria-hidden', 'false');
+    }
+  }
+
   window.openCookieSettings = openCookieModal;
+  window.openCookieBanner = openCookieBanner;
+  window.resetCookieConsent = function() {
+    try {
+      localStorage.removeItem('letino_cookie_consent_v2');
+      localStorage.removeItem('letino_cookie_consent');
+      localStorage.removeItem('letino_consent_analytics_v2');
+      localStorage.removeItem('letino_consent_analytics');
+    } catch (e) {}
+    location.reload();
+  };
 
   if (cookieAcceptBtn) {
     cookieAcceptBtn.addEventListener('click', () => applyConsentChoice(true));
@@ -1871,6 +1890,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       cookieBanner.classList.add('is-visible');
       cookieBanner.setAttribute('aria-hidden', 'false');
-    }, 280);
+    }, 120);
   }
 });
