@@ -2,7 +2,7 @@
  * LETINO OUTLET - MAIN LOGIC & MULTI-LANGUAGE ENGINE
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initLetinoApp() {
   // Główne kanały i odnośniki Letino Outlet
   const INSTAGRAM_URL = 'https://www.instagram.com/letino.outlet/';
   const EBAY_URL = 'https://www.ebay.de/str/letinooutlet';
@@ -1837,6 +1837,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  window.applyCookieConsent = applyConsentChoice;
   window.openCookieSettings = openCookieModal;
   window.openCookieBanner = openCookieBanner;
   window.resetCookieConsent = function() {
@@ -1889,9 +1890,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Wyświetlaj powiadomienie o plikach cookie za każdym razem przy wejściu na stronę
   if (cookieBanner) {
-    setTimeout(() => {
-      cookieBanner.classList.add('is-visible');
-      cookieBanner.setAttribute('aria-hidden', 'false');
-    }, 120);
+    cookieBanner.classList.add('is-visible');
+    cookieBanner.setAttribute('aria-hidden', 'false');
   }
-});
+}
+
+// Obsługa natychmiastowego startu bez względu na moment załadowania skryptu
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLetinoApp);
+} else {
+  initLetinoApp();
+}

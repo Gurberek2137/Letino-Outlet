@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css?v=6.2">
+  <link rel="stylesheet" href="style.css?v=6.3">
 
   <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1CEW47MBJ"></script>
@@ -1000,7 +1000,7 @@
   </script>
 
   <!-- BANER COOKIES -->
-  <aside class="cookie-banner" id="cookieBanner" aria-label="Zgoda na pliki cookie" role="region" aria-hidden="true">
+  <aside class="cookie-banner letino-cookie-notice is-visible" id="cookieBanner" data-component="cookie-consent" aria-label="Zgoda na pliki cookie" role="region" aria-hidden="false">
     <div class="cookie-banner-inner">
       <div class="cookie-banner-content">
         <div class="cookie-banner-icon" aria-hidden="true">
@@ -1019,9 +1019,9 @@
         </div>
       </div>
       <div class="cookie-banner-actions">
-        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieRejectBtn" data-i18n="cookie_btn_reject">Odrzuć</button>
-        <button type="button" class="btn-cookie btn-cookie-settings" id="cookieSettingsBtn" data-i18n="cookie_btn_settings">Ustawienia</button>
-        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAcceptBtn" data-i18n="cookie_btn_accept">Akceptuj wszystkie</button>
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieRejectBtn" data-i18n="cookie_btn_reject" onclick="if(window.applyCookieConsent){window.applyCookieConsent(false);}else{this.closest('#cookieBanner').classList.remove('is-visible');}">Odrzuć</button>
+        <button type="button" class="btn-cookie btn-cookie-settings" id="cookieSettingsBtn" data-i18n="cookie_btn_settings" onclick="if(window.openCookieSettings){window.openCookieSettings();}else{document.getElementById('cookieModal').classList.add('is-active');}">Ustawienia</button>
+        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAcceptBtn" data-i18n="cookie_btn_accept" onclick="if(window.applyCookieConsent){window.applyCookieConsent(true);}else{this.closest('#cookieBanner').classList.remove('is-visible');}">Akceptuj wszystkie</button>
       </div>
     </div>
   </aside>
@@ -1094,6 +1094,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=5.9"></script>
+  <script src="script.js?v=6.0"></script>
 </body>
 </html>
