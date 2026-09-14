@@ -1887,8 +1887,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const existingConsent = getStoredConsent();
-  if (!existingConsent && cookieBanner) {
+  // Wyświetlaj powiadomienie o plikach cookie za każdym razem przy wejściu na stronę
+  if (cookieBanner) {
     setTimeout(() => {
       cookieBanner.classList.add('is-visible');
       cookieBanner.setAttribute('aria-hidden', 'false');
