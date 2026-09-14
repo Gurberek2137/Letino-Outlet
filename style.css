@@ -4854,3 +4854,19 @@ body.lang-fade-out [data-i18n] {
   color: var(--text-muted);
 }
 
+.legal-form-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-gold-subtle);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin: 20px 0;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .legal-form-box {
+    padding: 16px;
+  }
+}
+
