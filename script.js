@@ -1440,20 +1440,36 @@ function initLetinoApp() {
 
     let activeKey = isFaqPage ? 'faq' : null;
 
+    const cachedGlidePositions = new Map();
+    function computeGlidePositions() {
+      cachedGlidePositions.clear();
+      if (!navLinksList) return;
+      const listRect = navLinksList.getBoundingClientRect();
+      desktopLinks.forEach(link => {
+        const linkRect = link.getBoundingClientRect();
+        cachedGlidePositions.set(link, {
+          left: linkRect.left - listRect.left,
+          width: linkRect.width
+        });
+      });
+    }
+
     function updateGlideTo(linkElement) {
       if (!glideIndicator || !navLinksList || !linkElement) {
         if (glideIndicator) glideIndicator.style.opacity = '0';
         return;
       }
       
-      const listRect = navLinksList.getBoundingClientRect();
-      const linkRect = linkElement.getBoundingClientRect();
-      const left = linkRect.left - listRect.left;
-      const width = linkRect.width;
-
-      glideIndicator.style.transform = `translate3d(${left}px, 0, 0)`;
-      glideIndicator.style.width = `${width}px`;
-      glideIndicator.style.opacity = '1';
+      let pos = cachedGlidePositions.get(linkElement);
+      if (!pos) {
+        computeGlidePositions();
+        pos = cachedGlidePositions.get(linkElement);
+      }
+      if (pos) {
+        glideIndicator.style.transform = `translate3d(${pos.left}px, 0, 0)`;
+        glideIndicator.style.width = `${pos.width}px`;
+        glideIndicator.style.opacity = '1';
+      }
     }
 
     function setActiveKey(key, forceGlide = true) {
@@ -1517,6 +1533,7 @@ function initLetinoApp() {
 
     // Aktualizacja pozycji przy zmianie rozmiaru ekranu
     window.addEventListener('resize', () => {
+      computeGlidePositions();
       const currentActive = document.querySelector('.desktop-nav .nav-link.active');
       if (currentActive) {
         updateGlideTo(currentActive);

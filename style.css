@@ -245,27 +245,14 @@ img {
   display: block;
 }
 
-/* Optymalizacja wydajności renderowania sekcji i kart */
-.products-section,
-.ebay-proof-section,
-.about-section,
-.categories-section,
-.features-section,
-.abc-section,
-.main-faq-section,
-.contact-section,
-.footer {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
-}
-
+/* Stabilne renderowanie sekcji bez przeskakiwania layoutu (bez jank) */
 .product-card,
 .category-card,
 .contact-card,
 .main-faq-item,
 .abc-card,
 .honesty-card {
-  contain: layout style;
+  contain: style;
 }
 
 button {
@@ -5452,8 +5439,13 @@ body.cookie-modal-open {
   background: rgba(7, 10, 18, 0.6);
 }
 
-/* Responsywność */
+/* Responsywność & Płynność Mobile */
 @media (max-width: 768px) {
+  /* Wyłączenie ciężkich animacji gradientów na mobile - redukcja zużycia GPU i płynne 120Hz */
+  .ambient-orb {
+    animation: none !important;
+  }
+
   .cookie-banner {
     bottom: max(12px, env(safe-area-inset-bottom, 12px));
     left: 12px;
