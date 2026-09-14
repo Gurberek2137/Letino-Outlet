@@ -249,6 +249,19 @@ button {
   font-family: inherit;
 }
 
+button,
+.btn,
+.nav-link,
+.mobile-nav-link,
+.mobile-menu-toggle,
+.lang-tile,
+.card-link,
+.footer-logo-link,
+.mobile-drawer-logo {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ==========================================================================
    HEADER & NAVIGATION
    ========================================================================== */
@@ -298,7 +311,16 @@ button {
   flex: 0 0 auto;
   white-space: nowrap;
   z-index: 2;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.logo:active {
+  transform: scale(0.98);
+  opacity: 0.9;
 }
 
 .logo-icon-img {
@@ -331,14 +353,16 @@ button {
   filter: drop-shadow(0 2px 16px rgba(212, 175, 55, 0.6));
 }
 
-.header.is-scrolled .logo-icon-img {
-  width: 44px;
-  height: 44px;
-}
+@media (min-width: 1025px) {
+  .header.is-scrolled .logo-icon-img {
+    width: 44px;
+    height: 44px;
+  }
 
-.header.is-scrolled .logo-banner-img {
-  height: 34px;
-  max-width: 185px;
+  .header.is-scrolled .logo-banner-img {
+    height: 34px;
+    max-width: 185px;
+  }
 }
 
 /* Desktop Navigation - Wycentrowana na środku nagłówka */

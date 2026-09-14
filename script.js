@@ -1207,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // PRZYCISK POWROTU NA GÓRĘ (BACK TO TOP)
+  // PRZYCISK POWROTU NA GÓRĘ (BACK TO TOP) & KLIKNIĘCIE LOGO W NAGŁÓWKU
   // =========================================================================
   const backToTopBtn = document.getElementById('backToTopBtn');
   if (backToTopBtn) {
@@ -1215,6 +1215,46 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  function scrollPageToTop(e) {
+    const isLegalSubpage = window.location.pathname.endsWith('terms.html') || 
+                           window.location.pathname.endsWith('privacy-policy.html') || 
+                           window.location.pathname.endsWith('impressum.html');
+
+    if (!isLegalSubpage) {
+      if (e) e.preventDefault();
+      closeMobileMenu();
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+
+      // Usunięcie hasha z paska adresu
+      if (window.location.hash) {
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, null, window.location.pathname + window.location.search);
+        } else {
+          window.location.hash = '';
+        }
+      }
+
+      // Ukrycie wskaźnika aktywnej pozycji w menu
+      const glideIndicator = document.querySelector('.nav-indicator-glide');
+      if (glideIndicator) {
+        glideIndicator.style.opacity = '0';
+      }
+      document.querySelectorAll('.desktop-nav .nav-link, .mobile-nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+    }
+  }
+
+  const logoTopLinks = document.querySelectorAll('.header .logo, .mobile-drawer-logo, .footer-logo-link');
+  logoTopLinks.forEach(logoLink => {
+    logoLink.addEventListener('click', scrollPageToTop);
+  });
 
   // =========================================================================
   // MODAL INFORMACJI PRAWNYCH (POLITYKA PRYWATNOŚCI / REGULAMIN)
@@ -1656,10 +1696,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // WYSOKOWYDAJNY MOTOR PRZEWIJANIA (REQUEST ANIMATION FRAME)
   // =========================================================================
   const onNavScrollTick = initNavIndicator();
+  const headerEl = document.querySelector('.header');
 
   let isScrollTicking = false;
   let lastScrollY = -1;
   let isBackToTopVisible = false;
+  let isHeaderScrolled = false;
 
   function handleScrollFrame() {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
@@ -1669,10 +1711,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     lastScrollY = scrollY;
 
-    // 0. Styl przewiniętego nagłówka (is-scrolled)
-    const headerEl = document.querySelector('.header');
-    if (headerEl) {
-      headerEl.classList.toggle('is-scrolled', scrollY > 15);
+    // 0. Styl przewiniętego nagłówka (is-scrolled) - aktualizacja tylko przy faktycznej zmianie stanu
+    const shouldHeaderScrolled = scrollY > 15;
+    if (shouldHeaderScrolled !== isHeaderScrolled) {
+      isHeaderScrolled = shouldHeaderScrolled;
+      if (headerEl) {
+        headerEl.classList.toggle('is-scrolled', shouldHeaderScrolled);
+      }
     }
 
     // 1. Widoczność przycisku Back To Top (tylko przy zmianie stanu)
