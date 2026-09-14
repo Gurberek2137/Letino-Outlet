@@ -29,9 +29,9 @@
   <link rel="stylesheet" href="style.css?v=6.0">
 
   <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1CEW47MBJ"></script>
   <script>
     window.GA_MEASUREMENT_ID = 'G-J1CEW47MBJ';
-
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
 
@@ -43,29 +43,15 @@
       'ad_personalization': 'denied'
     });
 
-    // Funkcja ładująca skrypt Google Analytics wyłącznie po uzyskaniu zgody
-    function initGoogleAnalytics() {
-      if (!window.GA_MEASUREMENT_ID || !window.GA_MEASUREMENT_ID.startsWith('G-')) return;
-      if (document.getElementById('ga-gtag-script')) return;
-
-      gtag('consent', 'update', {
-        'analytics_storage': 'granted'
-      });
-
-      const gaScript = document.createElement('script');
-      gaScript.id = 'ga-gtag-script';
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
-      document.head.appendChild(gaScript);
-
-      gtag('js', new Date());
-      gtag('config', window.GA_MEASUREMENT_ID);
-    }
+    gtag('js', new Date());
+    gtag('config', 'G-J1CEW47MBJ');
 
     // Interfejs do zarządzania zgodą na analitykę
     window.grantAnalyticsConsent = function() {
       try { localStorage.setItem('letino_consent_analytics', 'granted'); } catch(e) {}
-      initGoogleAnalytics();
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
     };
 
     window.revokeAnalyticsConsent = function() {
@@ -81,10 +67,10 @@
       if (savedConsent) {
         var parsed = JSON.parse(savedConsent);
         if (parsed && parsed.analytics === true) {
-          initGoogleAnalytics();
+          gtag('consent', 'update', { 'analytics_storage': 'granted' });
         }
       } else if (localStorage.getItem('letino_consent_analytics') === 'granted') {
-        initGoogleAnalytics();
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
       }
     } catch(e) {}
   </script>
