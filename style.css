@@ -4870,3 +4870,9 @@ body.lang-fade-out [data-i18n] {
   }
 }
 
+.legal-doc-content hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 28px 0;
+}
+
