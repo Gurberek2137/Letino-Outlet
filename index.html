@@ -40,19 +40,59 @@
   <!-- Style CSS z parametrem wersji przeciw pamięci podręcznej (cache) -->
   <link rel="stylesheet" href="style.css?v=5.7">
 
-  <!-- Google Analytics 4 (Właścicielka: wpisz swój identyfikator pomiaru G-XXXXXXXXXX) -->
+  <!-- Google Analytics 4 (Google tag / gtag.js z Google Consent Mode v2) -->
   <script>
-    window.GA_MEASUREMENT_ID = ''; // Wpisz identyfikator z Google Analytics 4 np. 'G-XXXXXXXXXX'
-    if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID.startsWith('G-')) {
+    window.GA_MEASUREMENT_ID = 'G-L1CDJ9CNJT';
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Domyślna konfiguracja zgód (Google Consent Mode v2): zablokowany dostęp do cookies i analityki
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+
+    // Funkcja ładująca skrypt Google Analytics wyłącznie po uzyskaniu zgody
+    function initGoogleAnalytics() {
+      if (!window.GA_MEASUREMENT_ID || !window.GA_MEASUREMENT_ID.startsWith('G-')) return;
+      if (document.getElementById('ga-gtag-script')) return;
+
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+
       const gaScript = document.createElement('script');
+      gaScript.id = 'ga-gtag-script';
       gaScript.async = true;
       gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
       document.head.appendChild(gaScript);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+
       gtag('js', new Date());
       gtag('config', window.GA_MEASUREMENT_ID);
     }
+
+    // Interfejs do zarządzania zgodą na analitykę
+    window.grantAnalyticsConsent = function() {
+      try { localStorage.setItem('letino_consent_analytics', 'granted'); } catch(e) {}
+      initGoogleAnalytics();
+    };
+
+    window.revokeAnalyticsConsent = function() {
+      try { localStorage.setItem('letino_consent_analytics', 'denied'); } catch(e) {}
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
+    };
+
+    // Sprawdzenie zapamiętanej zgody użytkownika
+    try {
+      if (localStorage.getItem('letino_consent_analytics') === 'granted') {
+        initGoogleAnalytics();
+      }
+    } catch(e) {}
   </script>
 
   <!-- Schema.org JSON-LD Structured Data -->
