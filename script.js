@@ -1560,6 +1560,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     lastScrollY = scrollY;
 
+    // 0. Styl przewiniętego nagłówka (is-scrolled)
+    const headerEl = document.querySelector('.header');
+    if (headerEl) {
+      headerEl.classList.toggle('is-scrolled', scrollY > 15);
+    }
+
     // 1. Widoczność przycisku Back To Top (tylko przy zmianie stanu)
     if (backToTopBtn) {
       const shouldShow = scrollY > 350;

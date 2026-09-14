@@ -98,6 +98,7 @@ body {
   width: 100%;
   max-width: 100vw;
   -webkit-tap-highlight-color: transparent;
+  padding-top: 66px;
 }
 
 /* Opcjonalna warstwa własnego tła z filtrem przyciemniającym (gwarancja czytelności) */
@@ -242,18 +243,28 @@ button {
    HEADER & NAVIGATION
    ========================================================================== */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(7, 10, 18, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(7, 10, 18, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 150;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   transform: translateZ(0);
-  will-change: transform;
-  transition: padding 0.25s ease, background 0.25s ease;
+  will-change: padding, background, box-shadow, border-color;
+  transition: padding 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.header.is-scrolled {
+  padding: 6px 0;
+  background: rgba(5, 8, 15, 0.97);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
 .header-inner {
@@ -2753,6 +2764,10 @@ body.lang-fade-out [data-i18n] {
 }
 
 @media (max-width: 640px) {
+  body {
+    padding-top: 54px;
+  }
+
   /* Kontener i marginesy */
   .container {
     padding: 0 16px;
